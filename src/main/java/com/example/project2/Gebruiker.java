@@ -3,16 +3,16 @@ import java.util.*;
 public class Gebruiker {
     private String naam;
     private String wachtwoord;
-    private boolean isadmin;
+    private boolean isAdmin;
     private ArrayList<Ritten> ritten = new ArrayList<rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
     
 
 
-    public Gebruiker(String naam, Integer gebruikerNummer, String wachtwoord, boolean admin){
+    public Gebruiker(String naam, Integer gebruikerNummer, String wachtwoord, boolean isAdmin){
         this.naam = naam;
         this.wachtwoord = wachtwoord;
-        this.admin = admin;
+        this.isAdmin = isAdmin;
 
         gebruikerslijst.add(this);
     }
@@ -33,7 +33,7 @@ public class Gebruiker {
 
 // public String getWachtwoord() {return wachtwoord;} --ADMIN TOOL
 
-    public Boolean getAdmin() {return admin;}
+    public Boolean getIsAdmin() {return isAdmin;}
 
     public void addRit(Rit rit) {
         this.Ritten.add(rit);
@@ -53,6 +53,6 @@ public class Gebruiker {
     public String toString() {
         return  "Naam = " + naam + "\n" +
                 "Ritten = " + ritten + "\n" +
-                "Admin = " + admin + "\n";
+                "IsAdmin = " + isAdmin + "\n";
     }
 }
