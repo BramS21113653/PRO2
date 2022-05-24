@@ -13,8 +13,8 @@ public class Gebruiker {
         this.naam = naam;
         this.wachtwoord = wachtwoord;
         this.isAdmin = isAdmin;
-
-        gebruikerslijst.add(this);
+        //gegevens invoeren in database
+        refreshGebruikerslijst()
     }
 
     public Gebruiker(){}
