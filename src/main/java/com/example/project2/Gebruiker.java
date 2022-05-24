@@ -19,9 +19,15 @@ public class Gebruiker {
 
     public Gebruiker(){}
 
-//    public void removeGebruiker(Gebruiker gebruiker){ --ADMIN TOOL
-//        gebruikerslijst.remove(gebruiker);
-//    }
+    public void refreshGebruikerslijst(){
+        //gebruikerslijst legen
+        //database tabellen inlezen
+        //gebruikerslijst invullen
+    }
+
+    public void addGebruiker(Gebruiker gebruiker){ --ADMIN TOOL
+        gebruikerslijst.add(gebruiker);
+    }
 
     public static ArrayList<Gebruiker> getGebruikersLijst() {
         return gebruikerslijst;
