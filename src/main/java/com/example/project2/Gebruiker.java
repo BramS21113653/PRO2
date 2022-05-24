@@ -10,18 +10,21 @@ public class Gebruiker {
 
 
     public Gebruiker(String naam, Integer gebruikerNummer, String wachtwoord, boolean isAdmin){
-        this.naam = naam;
-        this.wachtwoord = wachtwoord;
-        this.isAdmin = isAdmin;
+        //vvvv idk of dit nodig is vvvv\\
+        // this.naam = naam;
+        // this.wachtwoord = wachtwoord;
+        // this.isAdmin = isAdmin;
+        //^^^^ idk of dit nodig is ^^^^\\
+
         //gegevens invoeren in database
         refreshGebruikerslijst()
     }
 
-    public Gebruiker(){}
 
     public void refreshGebruikerslijst(){
         //gebruikerslijst legen
         //database tabellen inlezen
+        //gebruikers maken van database gegevens
         //gebruikerslijst invullen
     }
 
