@@ -28,10 +28,6 @@ public class Gebruiker {
         //gebruikerslijst invullen
     }
 
-    public void addGebruiker(Gebruiker gebruiker){ --ADMIN TOOL
-        gebruikerslijst.add(gebruiker);
-    }
-
     public static ArrayList<Gebruiker> getGebruikersLijst() {
         return gebruikerslijst;
     }
