@@ -5,37 +5,40 @@ public class Gebruiker {
     private Integer id;
     private String naam;
     private String wachtwoord;
-    private boolean isAdmin;
+    private Integer isAdmin;
     private ArrayList<Ritten> ritten = new ArrayList<rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
-    
+    //db
+    private static String dbUrl = "jdbc:mysql://localhost:3306/database";
+    private static String dbUsername = "root";
+    private static String dbPassword = "mysql";
 
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Could not load JDBC driver: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Could not connect to DB: " + e.getMessage());
+        }
+        return connection;
+    }
+    //db
 
-    public Gebruiker(Integer id, String naam, String wachtwoord, boolean isAdmin){
-        //vvvv idk of dit nodig is vvvv\\
-        // this.id = id;
-        // this.naam = naam;
-        // this.wachtwoord = wachtwoord;
-        // this.isAdmin = isAdmin;
-        //^^^^ idk of dit nodig is ^^^^\\
-        String myDriver = "org.gjt.mm.mysql.Driver";
-        String myUrl = "jdbc:mysql://localhost/betabit";
-        Class.forName(myDriver);
-        Connection conn = DriverManager.getConnection(myUrl, "root", "root");
-        //gegevens invoeren in database
-        // the mysql insert statement
+    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin) throws SQLException {
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin)"
                 + " values (?, ?, ?, ?)";
-
-        PreparedStatement preparedStmt = conn.prepareStatement(query);
+        PreparedStatement preparedStmt = getConnection().prepareStatement(query);
         preparedStmt.setString (2, naam);
         preparedStmt.setString   (3, wachtwoord);
         preparedStmt.setInt(4, isAdmin);
 
         preparedStmt.execute();
 
-        conn.close();
-        refreshGebruikerslijst()
+        getConnection().close();
+        refreshGebruikerslijst();
     }
 
 
