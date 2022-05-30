@@ -12,7 +12,7 @@ public class Gebruiker {
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
 
         //db
-        private static String dbUrl = "jdbc:mysql://localhost:3306/database";
+        private static String dbUrl = "jdbc:mysql://localhost:3306/betabit";
         private static String dbUsername = "root";
         private static String dbPassword = "root";
 
