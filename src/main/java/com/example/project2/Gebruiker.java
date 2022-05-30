@@ -61,14 +61,39 @@ public class Gebruiker {
         connecton.close();
     }
 
-    public void refreshGebruikerslijst(){
+    public void refreshGebruikerslijst() throws SQLException {
         //gebruikerslijst legen
-
+        gebruikerslijst.clear();
+        Statement statement = null;
+        ResultSet result = null;
+        Connection connecton = getConnection();
+        statement = connecton.createStatement();
         //database tabellen inlezen
-        //gebruikers maken van database gegevens
+        result = statement.executeQuery("SELECT * FROM `gebruiker`");
 
+        try {
+            while (result.next()) {
+                //gebruikers maken van database gegevens
+                Gebruiker gebruiker = getGebruikerFromResult(result);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
+    public static Gebruiker getGebruikerFromResult(ResultSet result){
+        try {
+            Integer id = result.getInt("id");
+            String naam = result.getString("naam");
+            String wachtwoord = result.getString("wachtwoord");
+            Integer isAdmin = result.getInt("isadmin");
+            return new Gebruiker(id, naam, wachtwoord, isAdmin);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 
     public static ArrayList<Gebruiker> getGebruikersLijst() {
         return gebruikerslijst;
