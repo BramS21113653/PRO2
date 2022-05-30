@@ -1,3 +1,5 @@
+package com.example.project2;
+
 import com.example.project2.Vervoersmiddel;
 
 import java.util.*;
