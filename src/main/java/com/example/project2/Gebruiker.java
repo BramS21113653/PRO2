@@ -10,24 +10,25 @@ public class Gebruiker {
     private Integer isAdmin;
     private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
-    //db
-    private static String dbUrl = "jdbc:mysql://localhost:3306/database";
-    private static String dbUsername = "root";
-    private static String dbPassword = "mysql";
 
-    public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load JDBC driver: " + e.getMessage());
-        } catch (SQLException e) {
-            System.out.println("Could not connect to DB: " + e.getMessage());
+        //db
+        private static String dbUrl = "jdbc:mysql://localhost:3306/database";
+        private static String dbUsername = "root";
+        private static String dbPassword = "mysql";
+
+        public static Connection getConnection() {
+            Connection connection = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            } catch (ClassNotFoundException e) {
+                System.out.println("Could not load JDBC driver: " + e.getMessage());
+            } catch (SQLException e) {
+                System.out.println("Could not connect to DB: " + e.getMessage());
+            }
+            return connection;
         }
-        return connection;
-    }
-    //db
+        //db
 
     public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin) throws SQLException {
         this.id = id;
@@ -39,16 +40,17 @@ public class Gebruiker {
     }
 
     public void insertGebruiker() throws SQLException {
+        Connection connecton = getConnection();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin)"
                 + " values (?, ?, ?, ?)";
-        PreparedStatement preparedStmt = getConnection().prepareStatement(query);
+        PreparedStatement preparedStmt = connecton.prepareStatement(query);
         preparedStmt.setString (2, this.naam);
         preparedStmt.setString   (3, this.wachtwoord);
         preparedStmt.setInt(4, this.isAdmin);
 
         preparedStmt.execute();
 
-        getConnection().close();
+        connecton.close();
     }
 
     public void refreshGebruikerslijst(){
