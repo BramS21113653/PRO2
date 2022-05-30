@@ -1,6 +1,8 @@
 import java.util.*;
+import java.sql.*;
 
 public class Gebruiker {
+    private Integer id;
     private String naam;
     private String wachtwoord;
     private boolean isAdmin;
@@ -9,14 +11,30 @@ public class Gebruiker {
     
 
 
-    public Gebruiker(String naam, Integer gebruikerNummer, String wachtwoord, boolean isAdmin){
+    public Gebruiker(Integer id, String naam, String wachtwoord, boolean isAdmin){
         //vvvv idk of dit nodig is vvvv\\
+        // this.id = id;
         // this.naam = naam;
         // this.wachtwoord = wachtwoord;
         // this.isAdmin = isAdmin;
         //^^^^ idk of dit nodig is ^^^^\\
-
+        String myDriver = "org.gjt.mm.mysql.Driver";
+        String myUrl = "jdbc:mysql://localhost/betabit";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "root", "root");
         //gegevens invoeren in database
+        // the mysql insert statement
+        String query = " insert into gebruiker (id, naam, wachtwoord, isadmin)"
+                + " values (?, ?, ?, ?)";
+
+        PreparedStatement preparedStmt = conn.prepareStatement(query);
+        preparedStmt.setString (2, naam);
+        preparedStmt.setString   (3, wachtwoord);
+        preparedStmt.setInt(4, isAdmin);
+
+        preparedStmt.execute();
+
+        conn.close();
         refreshGebruikerslijst()
     }
 
@@ -35,8 +53,6 @@ public class Gebruiker {
     public String getNaam() {
         return naam;
     }
-
-// public String getWachtwoord() {return wachtwoord;} --ADMIN TOOL
 
     public Boolean getIsAdmin() {return isAdmin;}
 
