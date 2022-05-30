@@ -73,7 +73,7 @@ public class Gebruiker {
     public Integer getIsAdmin() {return isAdmin;}
 
     public void addRit(Rit rit) {
-        ritten.add(rit);
+        this.ritten.add(rit);
     }
 
 public Gebruiker getGebruikerOnName(Integer id) {
