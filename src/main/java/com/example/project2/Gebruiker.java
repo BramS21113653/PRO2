@@ -30,19 +30,26 @@ public class Gebruiker {
     //db
 
     public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin) throws SQLException {
+        this.id = id;
+        this.naam = naam;
+        this.wachtwoord = wachtwoord;
+        this.isAdmin = isAdmin;
+        insertGebruiker();
+        refreshGebruikerslijst();
+    }
+
+    public void insertGebruiker() throws SQLException {
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin)"
                 + " values (?, ?, ?, ?)";
         PreparedStatement preparedStmt = getConnection().prepareStatement(query);
-        preparedStmt.setString (2, naam);
-        preparedStmt.setString   (3, wachtwoord);
-        preparedStmt.setInt(4, isAdmin);
+        preparedStmt.setString (2, this.naam);
+        preparedStmt.setString   (3, this.wachtwoord);
+        preparedStmt.setInt(4, this.isAdmin);
 
         preparedStmt.execute();
 
         getConnection().close();
-        refreshGebruikerslijst();
     }
-
 
     public void refreshGebruikerslijst(){
         //gebruikerslijst legen
