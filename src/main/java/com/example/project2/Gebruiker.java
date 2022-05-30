@@ -8,7 +8,7 @@ public class Gebruiker {
     private String naam;
     private String wachtwoord;
     private Integer isAdmin;
-    private ArrayList<Ritten> ritten = new ArrayList<rit>();
+    private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
     //db
     private static String dbUrl = "jdbc:mysql://localhost:3306/database";
@@ -73,7 +73,7 @@ public class Gebruiker {
     public Integer getIsAdmin() {return isAdmin;}
 
     public void addRit(Rit rit) {
-        this.Ritten.add(rit);
+        ritten.add(rit);
     }
 
 public Gebruiker getGebruikerOnName(Integer id) {
