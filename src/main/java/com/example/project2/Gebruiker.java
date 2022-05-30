@@ -43,6 +43,8 @@ public class Gebruiker {
         this.naam = naam;
         this.wachtwoord = wachtwoord;
         this.isAdmin = isAdmin;
+        //gebruikerslijst invullen
+        gebruikerslijst.add(this);
     }
 
     public void insertGebruiker() throws SQLException {
@@ -64,7 +66,7 @@ public class Gebruiker {
 
         //database tabellen inlezen
         //gebruikers maken van database gegevens
-        //gebruikerslijst invullen
+
 
     }
 
