@@ -59,21 +59,25 @@ public class Gebruiker {
         return naam;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Integer getIsAdmin() {return isAdmin;}
 
     public void addRit(Rit rit) {
         this.Ritten.add(rit);
     }
 
-// public Gebruiker getGebruikerOnName(String naam) { -- MOGELIJK BRUIKBAAR
-//     Gebruiker match = null;
-//     for (Gebruiker gebruiker : gebruikerslijst){
-//         if (gebruiker.getNaam().contentEquals(naam)) {
-//             match = gebruiker;
-//         }
-//     }
-//     return match;
-// }
+public Gebruiker getGebruikerOnName(Integer id) {
+    Gebruiker match = null;
+    for (Gebruiker gebruiker : gebruikerslijst){
+        if (gebruiker.getId().equals(id)) {
+            match = gebruiker;
+        }
+    }
+    return match;
+}
 
     @Override
     public String toString() {
