@@ -30,13 +30,19 @@ public class Gebruiker {
         }
         //db
 
-    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin) throws SQLException {
+    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Boolean insert) throws SQLException {
         this.id = id;
         this.naam = naam;
         this.wachtwoord = wachtwoord;
         this.isAdmin = isAdmin;
         insertGebruiker();
         refreshGebruikerslijst();
+    }
+    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin) throws SQLException {
+        this.id = id;
+        this.naam = naam;
+        this.wachtwoord = wachtwoord;
+        this.isAdmin = isAdmin;
     }
 
     public void insertGebruiker() throws SQLException {
