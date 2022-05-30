@@ -14,7 +14,7 @@ public class Gebruiker {
         //db
         private static String dbUrl = "jdbc:mysql://localhost:3306/database";
         private static String dbUsername = "root";
-        private static String dbPassword = "mysql";
+        private static String dbPassword = "root";
 
         public static Connection getConnection() {
             Connection connection = null;
@@ -55,9 +55,11 @@ public class Gebruiker {
 
     public void refreshGebruikerslijst(){
         //gebruikerslijst legen
+
         //database tabellen inlezen
         //gebruikers maken van database gegevens
         //gebruikerslijst invullen
+
     }
 
     public static ArrayList<Gebruiker> getGebruikersLijst() {
