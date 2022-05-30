@@ -1,3 +1,5 @@
+package com.example.project2;
+
 import java.util.*;
 import java.sql.*;
 
@@ -57,7 +59,7 @@ public class Gebruiker {
         return naam;
     }
 
-    public Boolean getIsAdmin() {return isAdmin;}
+    public Integer getIsAdmin() {return isAdmin;}
 
     public void addRit(Rit rit) {
         this.Ritten.add(rit);
