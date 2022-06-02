@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.*;
+
 
 public class Login {
 
@@ -51,18 +53,27 @@ public class Login {
 
     private void checkLogin() throws IOException{
         HelloApplication h = new HelloApplication();
-        if(Username.getText().toString().equals("a") && password.getText().toString().equals("a")) {
-            h.changeScene("Dashboard.fxml");
-        }
+        try{
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+            Statement stat = con.createStatement();
+            String sql = "select * from betabit.gebruiker";
+            ResultSet rs = stat.executeQuery(sql);
+            while (rs.next()) {
+                int id_col = rs.getInt("id");
+                String DB_username = rs.getString("naam");
+                String DB_password = rs.getString("wachtwoord");
+                int isadmin = rs.getInt("isadmin");
+                if (Username.getText().toString().equals(DB_username) && password.getText().toString().equals(DB_password)) {
+                    h.changeScene("Dashboard.fxml");
+                } else if (Username.getText().isEmpty() && password.getText().isEmpty()) {
+                    wrongLogin.setText("Please enter your data.");
+                } else {
+                    wrongLogin.setText("Wrong username or password!");
+                }
+            }
 
-        else if(Username.getText().isEmpty() && password.getText().isEmpty()) {
-            wrongLogin.setText("Vul uw gegevens in!");
-//            wachtwoordReset.setVisible(true);
-        }
-
-        else {
-            wrongLogin.setText("Verkeerde gebruikersnaam en/of wachtwoord!");
-//            wachtwoordReset.setVisible(true);
+        } catch (Exception error){
+            System.out.println(error.getMessage());
         }
     }
 }
