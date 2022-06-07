@@ -36,7 +36,8 @@
          </columnResizePolicy>
       </TableView>
       <TextField fx:id="KilometersInput" layoutX="400.0" layoutY="267.0" onAction="#Kilometers_Input" promptText="Aantal Kilometer" AnchorPane.rightAnchor="50.400000000000006" />
-      <Button fx:id="confirm" layoutX="400.0" layoutY="308.0" mnemonicParsing="false" onAction="#Confirm_button" text="Confirm" AnchorPane.rightAnchor="140.8" />
+      <Button fx:id="confirmButton" layoutX="400.0" layoutY="308.0" mnemonicParsing="false" onAction="#Confirm_button" text="Confirm" AnchorPane.rightAnchor="140.8" />
+      <Button fx:id="adminButton" layoutX="491.0" layoutY="308.0" mnemonicParsing="false" onAction="#Admin_button" prefHeight="26.0" prefWidth="59.0" text="Admin" />
    </children>
    <rotationAxis>
       <Point3D />
