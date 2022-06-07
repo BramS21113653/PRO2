@@ -22,7 +22,7 @@ public class Dashboard {
     private TableColumn<Table, Integer> colomPunten;
 
     @FXML
-    private Button confirm;
+    private Button confirmButton;
 
     @FXML
     private ChoiceBox<?> keuze_Menu;
@@ -32,6 +32,9 @@ public class Dashboard {
 
     @FXML
     private TableView<Table> tabelGegevens;
+
+    @FXML
+    private Button adminButton;
 
     @FXML
     private Text wrongInput;
@@ -62,4 +65,9 @@ public class Dashboard {
 
     }
 
+    @FXML
+    void Admin_button(ActionEvent event) throws IOException {
+        HelloApplication h = new HelloApplication();
+        h.changeScene("AdminPanel.fxml");
+    }
 }
