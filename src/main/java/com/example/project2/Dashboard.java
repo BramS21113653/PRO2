@@ -13,13 +13,13 @@ public class Dashboard {
     private TextField KilometersInput;
 
     @FXML
-    private TableColumn<?, ?> colomNaam;
+    private TableColumn<Table, String> colomNaam;
 
     @FXML
-    private TableColumn<?, ?> colomPlaats;
+    private TableColumn<Table, Integer> colomPlaats;
 
     @FXML
-    private TableColumn<?, ?> colomPunten;
+    private TableColumn<Table, Integer> colomPunten;
 
     @FXML
     private Button confirm;
@@ -31,7 +31,7 @@ public class Dashboard {
     private Button logOut;
 
     @FXML
-    private TableView<?> tabelGegevens;
+    private TableView<Table> tabelGegevens;
 
     @FXML
     private Text wrongInput;

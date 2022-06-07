@@ -72,7 +72,7 @@ public class Login {
                 }
             }
 
-        } catch (Exception error){
+        } catch (Exception error) {
             System.out.println(error.getMessage());
         }
     }

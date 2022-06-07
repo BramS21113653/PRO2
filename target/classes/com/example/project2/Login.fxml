@@ -42,6 +42,9 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="249.0" layoutY="268.0" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="Wachtwoord vergeten? Klik hier." />
+      <Button fx:id="wachtwoordReset" layoutX="249.0" layoutY="268.0" mnemonicParsing="false" onAction="#wachtwoordReset_button" style="-fx-background-color: #00000000;" text="Wachtwoord vergeten? Klik hier.">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>
