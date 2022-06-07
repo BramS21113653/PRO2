@@ -10,26 +10,24 @@ public class Gebruiker {
     private Integer isAdmin;
     private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
+    //db
+    private static String dbUrl = "jdbc:mysql://localhost:3306/betabit";
+    private static String dbUsername = "root";
+    private static String dbPassword = "root";
 
-        //db
-        private static String dbUrl = "jdbc:mysql://localhost:3306/betabit";
-        private static String dbUsername = "root";
-        private static String dbPassword = "root";
-
-        public static Connection getConnection() {
-            Connection connection = null;
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-            } catch (ClassNotFoundException e) {
-                System.out.println("Could not load JDBC driver: " + e.getMessage());
-            } catch (SQLException e) {
-                System.out.println("Could not connect to DB: " + e.getMessage());
-            }
-            return connection;
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Could not load JDBC driver: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Could not connect to DB: " + e.getMessage());
         }
-        //db
-
+        return connection;
+    }
+    //db
     public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Boolean insert) throws SQLException {
         this.id = id;
         this.naam = naam;
