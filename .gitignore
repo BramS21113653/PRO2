@@ -25,6 +25,7 @@
 hs_err_pid*
 
 # IntelliJ-environment
+*.xml
 *.iml
 /.idea/
 target
