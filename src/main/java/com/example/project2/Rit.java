@@ -31,6 +31,7 @@ public class Rit {
         this.vervoersmiddel = vervoersmiddel;
         this.afstand = afstand;
     }
+
     public Rit(Integer id, Integer gebruikersid, String vervoersmiddel, Integer afstand, boolean insert) throws SQLException {
         this.id = id;
         this.gebruikersid = gebruikersid;
