@@ -1,5 +1,4 @@
 # IntelliJ-environment
-*.iml
-/.idea/
+#*.iml
+#/.idea/
 *.log
-target
