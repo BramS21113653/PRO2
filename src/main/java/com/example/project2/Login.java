@@ -48,7 +48,6 @@ public class Login {
     void wachtwoordReset_button(ActionEvent event) throws IOException{
         HelloApplication h = new HelloApplication();
         h.changeScene("Dashboard.fxml");
-
     }
 
     private void checkLogin() throws IOException{
