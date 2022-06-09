@@ -24,7 +24,6 @@ public class Gebruiker {
         } else {
             gebruikerslijst.add(this);
         }
-        System.out.println(gebruikerslijst);
     }
 
     public void insertGebruiker() throws SQLException {
