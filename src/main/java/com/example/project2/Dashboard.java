@@ -78,11 +78,4 @@ public class Dashboard<list> implements Initializable {
 
         tabelGegevens.setItems(list);
     }
-
-
-    public void haalvervoersmiddelop(){
-        for (Vervoersmiddel vervoersmiddel : Vervoersmiddel.getVervoersmiddelen()){
-            System.out.println("hi");
-        }
-    }
 }
