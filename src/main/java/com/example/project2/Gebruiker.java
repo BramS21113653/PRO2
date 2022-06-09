@@ -13,22 +13,17 @@ public class Gebruiker {
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
 
     public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten, Boolean insert) throws SQLException {
-        this.id = id;
-        this.naam = naam;
-        this.wachtwoord = wachtwoord;
-        this.isAdmin = isAdmin;
-        this.punten = punten;
-        insertGebruiker();
-        refreshGebruikerslijst();
-    }
-    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten) {
-        this.id = id;
-        this.naam = naam;
-        this.wachtwoord = wachtwoord;
-        this.isAdmin = isAdmin;
-        this.punten = punten;
-        //gebruikerslijst invullen
-        gebruikerslijst.add(this);
+        if (insert) {
+            this.id = id;
+            this.naam = naam;
+            this.wachtwoord = wachtwoord;
+            this.isAdmin = isAdmin;
+            this.punten = punten;
+            insertGebruiker();
+            refreshGebruikerslijst();
+        } else {
+            gebruikerslijst.add(this);
+        }
     }
 
     public void insertGebruiker() throws SQLException {
