@@ -33,7 +33,9 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="confirmButton" layoutX="400.0" layoutY="308.0" mnemonicParsing="false" onAction="#Confirm_button" text="Confirm" AnchorPane.rightAnchor="140.8" />
+       <Label alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA;" text="Dashboard" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"></Label>l
+
+       <Button fx:id="confirmButton" layoutX="400.0" layoutY="308.0" mnemonicParsing="false" onAction="#Confirm_button" text="Confirm" AnchorPane.rightAnchor="140.8" />
       <Button fx:id="adminButton" layoutX="491.0" layoutY="308.0" mnemonicParsing="false" onAction="#Admin_button" prefHeight="26.0" prefWidth="59.0" text="Admin" />
       <ComboBox fx:id="keuze_Menu" layoutX="400.0" layoutY="92.0" prefWidth="150.0" />
    </children>

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+
 <AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project2.AdminPanel">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA;" text="Adminpanel">
@@ -15,8 +16,5 @@
          </font>
       </Label>
       <Label alignment="CENTER" layoutY="371.0" prefHeight="30.0" prefWidth="600.0" style="-fx-background-color: #CCCCCC;" text="Copyright 2022 BetaBit©" />
-      <Button fx:id="Dashboard" layoutX="475.0" layoutY="321.0" mnemonicParsing="false" onAction="#Dashboard_button" text="Dashboard" />
-      <Button fx:id="Gebruiker_verwijderen" layoutX="325.0" layoutY="86.0" mnemonicParsing="false" onAction="#Gebruiker_verwijderen" prefHeight="39.0" prefWidth="261.0" text="Gebruiker verwijderen" />
-      <Button fx:id="Gebruiker_toevoegen" layoutX="14.0" layoutY="86.0" mnemonicParsing="false" onAction="#Gebruiker_toevoegen" prefHeight="39.0" prefWidth="261.0" text="Gebruiker toevoegen" />
    </children>
 </AnchorPane>
