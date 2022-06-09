@@ -64,7 +64,7 @@ public class Gebruiker {
             String wachtwoord = result.getString("wachtwoord");
             Integer isAdmin = result.getInt("isadmin");
             Integer punten = result.getInt("punten");
-            return new Gebruiker(id, naam, wachtwoord, isAdmin, punten);
+            return new Gebruiker(id, naam, wachtwoord, isAdmin, punten, false);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
