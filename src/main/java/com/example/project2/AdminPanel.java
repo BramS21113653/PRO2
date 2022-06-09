@@ -12,8 +12,23 @@ public class AdminPanel {
     private Button Dashboard;
 
     @FXML
+    private Button Gebruiker_toevoegen;
+
+    @FXML
+    private Button Gebruiker_verwijderen;
+    @FXML
     void Dashboard_button(ActionEvent event) throws IOException {
         HelloApplication h = new HelloApplication();
         h.changeScene("Dashboard.fxml");
+    }
+
+    @FXML
+    void Gebruiker_verwijderen(ActionEvent event) {
+
+    }
+
+    @FXML
+    void Gebruiker_toevoegen(ActionEvent event) {
+
     }
 }
