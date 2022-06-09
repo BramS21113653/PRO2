@@ -10,10 +10,10 @@ public class Vervoersmiddel {
     }
 
     public Integer getUitstootPerLiter() {
-        return uitstootPerLiter;
+        return this.uitstootPerLiter;
     }
 
     public String getVervoersmiddel() {
-        return vervoersmiddel;
+        return this.vervoersmiddel;
     }
 }
