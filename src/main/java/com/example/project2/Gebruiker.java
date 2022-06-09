@@ -92,15 +92,15 @@ public class Gebruiker {
         this.ritten.add(rit);
     }
 
-public Gebruiker getGebruikerOnName(Integer id) {
-    Gebruiker match = null;
-    for (Gebruiker gebruiker : gebruikerslijst){
-        if (gebruiker.getId().equals(id)) {
-            match = gebruiker;
+    public Gebruiker getGebruikerOnName(Integer id) {
+        Gebruiker match = null;
+        for (Gebruiker gebruiker : gebruikerslijst){
+            if (gebruiker.getId().equals(id)) {
+                match = gebruiker;
+            }
         }
+        return match;
     }
-    return match;
-}
 
     @Override
     public String toString() {
@@ -108,4 +108,6 @@ public Gebruiker getGebruikerOnName(Integer id) {
                 "Ritten = " + ritten + "\n" +
                 "IsAdmin = " + isAdmin + "\n";
     }
+
 }
+

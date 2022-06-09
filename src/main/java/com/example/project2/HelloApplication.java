@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class HelloApplication extends Application {
 
@@ -28,7 +29,7 @@ public class HelloApplication extends Application {
         stg.getScene().setRoot(pane);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         launch();
 
         Vervoersmiddel benzineAuto = new Vervoersmiddel("benzine auto", 2269);
