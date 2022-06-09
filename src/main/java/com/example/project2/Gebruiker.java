@@ -18,6 +18,7 @@ public class Gebruiker {
         this.wachtwoord = wachtwoord;
         this.isAdmin = isAdmin;
         this.punten = punten;
+
         if (insert == true) {
             //insertGebruiker();
             refreshGebruikerslijst();
