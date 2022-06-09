@@ -8,4 +8,12 @@ public class Vervoersmiddel {
         this.vervoersmiddel = vervoersmiddel;
         this.uitstootPerLiter = uitstootPerLiter;
     }
+
+    public Integer getUitstootPerLiter() {
+        return uitstootPerLiter;
+    }
+
+    public String getVervoersmiddel() {
+        return vervoersmiddel;
+    }
 }
