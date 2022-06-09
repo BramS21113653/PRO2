@@ -64,23 +64,18 @@ public class Dashboard<list> implements Initializable {
         HelloApplication h = new HelloApplication();
         h.changeScene("AdminPanel.fxml");
     }
+
     Gebruiker gebruiker = new Gebruiker( 1, "Niels", "wachtwoord", 1, 10, true);
     ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tabelGegevens.getItems().clear();
-        keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter");
+        keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter", "Elektrische Auto", "Diesel Auto", "Benzine Auto");
         colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
         colomPunten.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("punten"));
         colomPlaats.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("id"));
 
         tabelGegevens.setItems(list);
-    }
-
-
-    public void haalvervoersmiddelop(){
-        for (Vervoersmiddel vervoersmiddel : Vervoersmiddel.getVervoersmiddelen()){
-            System.out.println("hi");
-        }
     }
 }
