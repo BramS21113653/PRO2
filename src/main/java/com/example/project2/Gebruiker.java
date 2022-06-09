@@ -19,7 +19,7 @@ public class Gebruiker {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
         } catch (ClassNotFoundException e) {
             System.out.println("Could not load JDBC driver: " + e.getMessage());
