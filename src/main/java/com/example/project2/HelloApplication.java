@@ -31,7 +31,11 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) throws SQLException {
         launch();
-
+        Gebruiker gebruiker1 = new Gebruiker(1, "Niels", "wachtwoord", 1, 10, false);
+        Gebruiker gebruiker2 = new Gebruiker(2, "Daniel", "wachtwoord", 1, 8, false);
+        Gebruiker gebruiker3 = new Gebruiker(3, "Rick", "wachtwoord", 1, 7, false);
+        Gebruiker gebruiker4 = new Gebruiker(4, "Bram", "wachtwoord", 1, 4, false);
+        Gebruiker gebruiker5 = new Gebruiker(5, "Luc", "wachtwoord", 1, 1, false);
         Vervoersmiddel benzineAuto = new Vervoersmiddel("benzine auto", 2269);
         Vervoersmiddel dieselAuto = new Vervoersmiddel("diesel auto", 2606);
         //todo uitstootPerLiter aanpassen hieronder

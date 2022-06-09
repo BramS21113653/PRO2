@@ -108,6 +108,5 @@ public class Gebruiker {
                 "Ritten = " + ritten + "\n" +
                 "IsAdmin = " + isAdmin + "\n";
     }
-
 }
 

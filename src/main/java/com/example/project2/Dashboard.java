@@ -65,16 +65,12 @@ public class Dashboard<list> implements Initializable {
         h.changeScene("AdminPanel.fxml");
     }
 
-    Gebruiker gebruiker1 = new Gebruiker(1, "Niels", "wachtwoord", 1, 10, false);
-    Gebruiker gebruiker2 = new Gebruiker(2, "Daniel", "wachtwoord", 1, 8, false);
-    Gebruiker gebruiker3 = new Gebruiker(3, "Rick", "wachtwoord", 1, 7, false);
-    Gebruiker gebruiker4 = new Gebruiker(4, "Bram", "wachtwoord", 1, 4, false);
-    Gebruiker gebruiker5 = new Gebruiker(5, "Luc", "wachtwoord", 1, 1, false);
 
-    ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        System.out.println(Gebruiker.getGebruikersLijst());
+        ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
         keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter", "Elektrische Auto", "Diesel Auto", "Benzine Auto");
         colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
         colomPunten.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("punten"));
