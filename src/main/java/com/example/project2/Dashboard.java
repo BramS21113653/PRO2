@@ -14,16 +14,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Dashboard implements Initializable {
+public class Dashboard<list> implements Initializable {
 
     @FXML
-    private TableColumn<Table, String> colomNaam;
+    private TableColumn<Gebruiker, String> colomNaam;
 
     @FXML
-    private TableColumn<Table, Integer> colomPlaats;
+    private TableColumn<Gebruiker, Integer> colomPlaats;
 
     @FXML
-    private TableColumn<Table, Integer> colomPunten;
+    private TableColumn<Gebruiker, Integer> colomPunten;
 
     @FXML
     private Button confirmButton;
@@ -35,7 +35,7 @@ public class Dashboard implements Initializable {
     private Button logOut;
 
     @FXML
-    private TableView<Table> tabelGegevens;
+    private TableView<Gebruiker> tabelGegevens;
 
     @FXML
     private Button adminButton;
@@ -60,15 +60,14 @@ public class Dashboard implements Initializable {
         HelloApplication h = new HelloApplication();
         h.changeScene("AdminPanel.fxml");
     }
-
-    ObservableList<Table> list = FXCollections.observableArrayList(new Table("Daniël", 10, 1));
-
+    Gebruiker gebruiker = new Gebruiker( 1, "Niels", "wachtwoord", 1, 10);
+    ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter");
-        colomNaam.setCellValueFactory(new PropertyValueFactory<Table, String>("name"));
-        colomPunten.setCellValueFactory(new PropertyValueFactory<Table, Integer>("plaats"));
-        colomPlaats.setCellValueFactory(new PropertyValueFactory<Table, Integer>("punten"));
+        colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
+        colomPunten.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("punten"));
+        colomPlaats.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("id"));
 
         tabelGegevens.setItems(list);
     }

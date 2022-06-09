@@ -8,6 +8,7 @@ public class Gebruiker {
     private String naam;
     private String wachtwoord;
     private Integer isAdmin;
+    private Integer punten;
     private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
     //db
@@ -28,19 +29,21 @@ public class Gebruiker {
         return connection;
     }
     //db
-    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Boolean insert) throws SQLException {
+    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten, Boolean insert) throws SQLException {
         this.id = id;
         this.naam = naam;
         this.wachtwoord = wachtwoord;
         this.isAdmin = isAdmin;
+        this.punten = punten;
         insertGebruiker();
         refreshGebruikerslijst();
     }
-    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin) throws SQLException {
+    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten) {
         this.id = id;
         this.naam = naam;
         this.wachtwoord = wachtwoord;
         this.isAdmin = isAdmin;
+        this.punten = punten;
         //gebruikerslijst invullen
         gebruikerslijst.add(this);
     }
@@ -85,7 +88,8 @@ public class Gebruiker {
             String naam = result.getString("naam");
             String wachtwoord = result.getString("wachtwoord");
             Integer isAdmin = result.getInt("isadmin");
-            return new Gebruiker(id, naam, wachtwoord, isAdmin);
+            Integer punten = result.getInt("punten");
+            return new Gebruiker(id, naam, wachtwoord, isAdmin, punten);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -106,6 +110,8 @@ public class Gebruiker {
     }
 
     public Integer getIsAdmin() {return isAdmin;}
+
+    public Integer getPunten() {return punten;}
 
     public void addRit(Rit rit) {
         this.ritten.add(rit);
