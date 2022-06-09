@@ -30,7 +30,7 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
-        
+
         Vervoersmiddel benzineAuto = new Vervoersmiddel("benzine auto", 2269);
         Vervoersmiddel dieselAuto = new Vervoersmiddel("diesel auto", 2606);
         //todo uitstootPerLiter aanpassen hieronder
