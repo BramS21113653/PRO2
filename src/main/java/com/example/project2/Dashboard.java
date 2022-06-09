@@ -63,20 +63,4 @@ public class Dashboard implements Initializable {
         keuze_Menu.getItems().add("Items 4");
         keuze_Menu.getItems().add("Items 5");
     }
-
-    public void makeObjects() {
-        Vervoersmiddel benzineAuto = new Vervoersmiddel("benzine auto", 2269);
-        Vervoersmiddel dieselAuto = new Vervoersmiddel("diesel auto", 2606);
-        //todo uitstootPerLiter aanpassen hieronder
-        Vervoersmiddel elektrischeAuto = new Vervoersmiddel("elektrische auto", 0);
-        Vervoersmiddel scooter = new Vervoersmiddel("scooter", 2269);
-        Vervoersmiddel motor = new Vervoersmiddel("motor", 2269);
-        Vervoersmiddel fiets = new Vervoersmiddel("fiets", 0);
-        //todo uitstootPerLiter aanpassen hieronder
-        Vervoersmiddel ov = new Vervoersmiddel("ov", 0);
-        Vervoersmiddel lopen = new Vervoersmiddel("lopen", 0);
-        benzineAuto.getVervoersmiddel();
-    }
-
-
 }
