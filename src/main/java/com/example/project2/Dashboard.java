@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Dashboard<list> implements Initializable {
@@ -40,6 +41,9 @@ public class Dashboard<list> implements Initializable {
     @FXML
     private Button adminButton;
 
+    public Dashboard() throws SQLException {
+    }
+
     @FXML
     void Confirm_button(ActionEvent event) {
     }
@@ -60,10 +64,11 @@ public class Dashboard<list> implements Initializable {
         HelloApplication h = new HelloApplication();
         h.changeScene("AdminPanel.fxml");
     }
-    Gebruiker gebruiker = new Gebruiker( 1, "Niels", "wachtwoord", 1, 10);
+    Gebruiker gebruiker = new Gebruiker( 1, "Niels", "wachtwoord", 1, 10, true);
     ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tabelGegevens.getItems().clear();
         keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter");
         colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
         colomPunten.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("punten"));
