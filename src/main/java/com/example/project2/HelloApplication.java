@@ -28,20 +28,18 @@ public class HelloApplication extends Application {
         stg.getScene().setRoot(pane);
     }
 
-    Vervoersmiddel benzineAuto = new Vervoersmiddel("benzine auto", 2269);
-    Vervoersmiddel dieselAuto = new Vervoersmiddel("diesel auto", 2606);
-    //todo uitstootPerLiter aanpassen hieronder
-    Vervoersmiddel elektrischeAuto = new Vervoersmiddel("elektrische auto", 0);
-    Vervoersmiddel scooter = new Vervoersmiddel("scooter", 2269);
-    Vervoersmiddel motor = new Vervoersmiddel("motor", 2269);
-    Vervoersmiddel fiets = new Vervoersmiddel("fiets", 0);
-    //todo uitstootPerLiter aanpassen hieronder
-    Vervoersmiddel ov = new Vervoersmiddel("ov", 0);
-    Vervoersmiddel lopen = new Vervoersmiddel("lopen", 0);
-
-
-
     public static void main(String[] args) {
         launch();
+        
+        Vervoersmiddel benzineAuto = new Vervoersmiddel("benzine auto", 2269);
+        Vervoersmiddel dieselAuto = new Vervoersmiddel("diesel auto", 2606);
+        //todo uitstootPerLiter aanpassen hieronder
+        Vervoersmiddel elektrischeAuto = new Vervoersmiddel("elektrische auto", 0);
+        Vervoersmiddel scooter = new Vervoersmiddel("scooter", 2269);
+        Vervoersmiddel motor = new Vervoersmiddel("motor", 2269);
+        Vervoersmiddel fiets = new Vervoersmiddel("fiets", 0);
+        //todo uitstootPerLiter aanpassen hieronder
+        Vervoersmiddel ov = new Vervoersmiddel("ov", 0);
+        Vervoersmiddel lopen = new Vervoersmiddel("lopen", 0);
     }
 }
