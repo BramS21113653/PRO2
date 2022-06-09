@@ -11,24 +11,7 @@ public class Gebruiker {
     private Integer punten;
     private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
-    //db
-    private static String dbUrl = "jdbc:mysql://localhost:3306/betabit";
-    private static String dbUsername = "root";
-    private static String dbPassword = "root";
 
-    public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load JDBC driver: " + e.getMessage());
-        } catch (SQLException e) {
-            System.out.println("Could not connect to DB: " + e.getMessage());
-        }
-        return connection;
-    }
-    //db
     public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten, Boolean insert) throws SQLException {
         this.id = id;
         this.naam = naam;
@@ -49,28 +32,25 @@ public class Gebruiker {
     }
 
     public void insertGebruiker() throws SQLException {
-        Connection connecton = getConnection();
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin)"
                 + " values (?, ?, ?, ?)";
-        PreparedStatement preparedStmt = connecton.prepareStatement(query);
+        PreparedStatement preparedStmt = connection.prepareStatement(query);
         preparedStmt.setString (2, this.naam);
         preparedStmt.setString   (3, this.wachtwoord);
         preparedStmt.setInt(4, this.isAdmin);
 
         preparedStmt.execute();
 
-        connecton.close();
+        connection.close();
     }
 
     public void refreshGebruikerslijst() throws SQLException {
-        //gebruikerslijst legen
         gebruikerslijst.clear();
-        Statement statement = null;
-        ResultSet result = null;
-        Connection connecton = getConnection();
-        statement = connecton.createStatement();
-        //database tabellen inlezen
-        result = statement.executeQuery("SELECT * FROM `gebruiker`");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker`");
 
         try {
             while (result.next()) {
