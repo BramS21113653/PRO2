@@ -59,8 +59,14 @@ public class Dashboard implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        Vervoersmiddel//
-        keuze_Menu.getItems().add("Items 4");
-        keuze_Menu.getItems().add("Items 5");
+        keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter");
+//        keuze_Menu.getItems().add("Items 5");
+    }
+
+
+    public void haalvervoersmiddelop(){
+        for (Vervoersmiddel vervoersmiddel : Vervoersmiddel.getVervoersmiddelen()){
+            System.out.println("hi");
+        }
     }
 }
