@@ -4,38 +4,39 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Table {
-    private SimpleStringProperty tableNaam;
-    private SimpleIntegerProperty tablePlaats;
-    private SimpleIntegerProperty tablePunten;
 
-    public Table(String tableNaam, int tablePlaats, int tablePuten){
-        this.tableNaam = new SimpleStringProperty(tableNaam);
-        this.tablePlaats = new SimpleIntegerProperty(tablePlaats);
-        this.tablePunten = new SimpleIntegerProperty(tablePuten);
+    private String name;
+    private int plaats;
+    private int punten;
+
+    public Table(String name, int plaats, int punten) {
+        this.name = name;
+        this.plaats = plaats;
+        this.punten = punten;
     }
 
-    public String getTableNaam() {
-        return tableNaam.get();
+    public String getName() {
+        return name;
     }
 
-    public void setTableNaam(String tableNaam) {
-        this.tableNaam = new SimpleStringProperty(tableNaam);
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getTablePlaats() {
-        return tablePlaats.get();
+    public int getPlaats() {
+        return plaats;
     }
 
-    public void setTablePlaats(int tablePlaats) {
-        this.tablePlaats = new SimpleIntegerProperty(tablePlaats);
+    public void setPlaats(int plaats) {
+        this.plaats = plaats;
     }
 
-    public int getTablePunten() {
-        return tablePlaats.get();
+    public int getPunten() {
+        return punten;
     }
 
-    public void setTablePunten(int tablePunten) {
-        this.tablePunten = new SimpleIntegerProperty(tablePunten);
+    public void setPunten(int punten) {
+        this.punten = punten;
     }
 }
 

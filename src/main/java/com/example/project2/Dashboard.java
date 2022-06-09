@@ -1,9 +1,13 @@
 package com.example.project2;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -13,13 +17,13 @@ import java.util.ResourceBundle;
 public class Dashboard implements Initializable {
 
     @FXML
-    private TableColumn colomNaam;
+    private TableColumn<Table, String> colomNaam;
 
     @FXML
-    private TableColumn colomPlaats;
+    private TableColumn<Table, Integer> colomPlaats;
 
     @FXML
-    private TableColumn colomPunten;
+    private TableColumn<Table, Integer> colomPunten;
 
     @FXML
     private Button confirmButton;
@@ -31,7 +35,7 @@ public class Dashboard implements Initializable {
     private Button logOut;
 
     @FXML
-    private TableView tabelGegevens;
+    private TableView<Table> tabelGegevens;
 
     @FXML
     private Button adminButton;
@@ -57,10 +61,16 @@ public class Dashboard implements Initializable {
         h.changeScene("AdminPanel.fxml");
     }
 
+    ObservableList<Table> list = FXCollections.observableArrayList(new Table("Daniël", 10, 1));
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter");
-//        keuze_Menu.getItems().add("Items 5");
+        colomNaam.setCellValueFactory(new PropertyValueFactory<Table, String>("name"));
+        colomPunten.setCellValueFactory(new PropertyValueFactory<Table, Integer>("plaats"));
+        colomPlaats.setCellValueFactory(new PropertyValueFactory<Table, Integer>("punten"));
+
+        tabelGegevens.setItems(list);
     }
 
 
