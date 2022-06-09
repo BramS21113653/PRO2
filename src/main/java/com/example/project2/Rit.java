@@ -88,4 +88,36 @@ public class Rit {
         }
         return null;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getGebruikersid() {
+        return gebruikersid;
+    }
+
+    public void setGebruikersid(Integer gebruikersid) {
+        this.gebruikersid = gebruikersid;
+    }
+
+    public String getVervoersmiddel() {
+        return vervoersmiddel;
+    }
+
+    public void setVervoersmiddel(String vervoersmiddel) {
+        this.vervoersmiddel = vervoersmiddel;
+    }
+
+    public Integer getAfstand() {
+        return afstand;
+    }
+
+    public void setAfstand(Integer afstand) {
+        this.afstand = afstand;
+    }
 }
