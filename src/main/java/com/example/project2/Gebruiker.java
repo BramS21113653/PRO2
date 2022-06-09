@@ -30,15 +30,19 @@ public class Gebruiker {
     public void insertGebruiker() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         Statement stat = connection.createStatement();
-        String query = " insert into gebruiker (id, naam, wachtwoord, isadmin)"
-                + " values (?, ?, ?, ?)";
+        String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
+                + " values (?, ?, ?, ?, ?)";
         PreparedStatement preparedStmt = connection.prepareStatement(query);
         preparedStmt.setString (2, this.naam);
         preparedStmt.setString   (3, this.wachtwoord);
         preparedStmt.setInt(4, this.isAdmin);
-
+        preparedStmt.setInt(5, this.punten);
         preparedStmt.execute();
-
+        ResultSet rs = stat.getGeneratedKeys();
+        if (rs.next()) {
+            int pk = rs.getInt(1);
+            System.out.println("Generated Key = " + pk);
+        }
         connection.close();
     }
 
