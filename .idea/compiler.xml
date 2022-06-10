@@ -13,4 +13,9 @@
       <module name="Project2" target="16" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Project2" options="--add-exports javafx.controls/javafx=com.example.project2" />
+    </option>
+  </component>
 </project>

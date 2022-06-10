@@ -9,20 +9,22 @@ public class Gebruiker {
     private String wachtwoord;
     private Integer isAdmin;
     private Integer punten;
+    private Integer plaats;
     private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
 
-    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten, Boolean insert) throws SQLException {
+    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten, Integer plaats, Boolean insert) throws SQLException {
         this.id = id;
         this.naam = naam;
         this.wachtwoord = wachtwoord;
         this.isAdmin = isAdmin;
         this.punten = punten;
-
+        this.plaats = plaats;
         if (insert == true) {
             insertGebruiker();
             refreshGebruikerslijst();
         } else {
+
             gebruikerslijst.add(this);
         }
     }
@@ -48,24 +50,25 @@ public class Gebruiker {
         gebruikerslijst.clear();
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
+        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten` DESC");
+        Integer counter = 0;
         try {
             while (result.next()) {
-                //gebruikers maken van database gegevens
-                Gebruiker gebruiker = getGebruikerFromResult(result);
+                counter ++;
+                Gebruiker gebruiker = getGebruikerFromResult(result, counter);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public static Gebruiker getGebruikerFromResult(ResultSet result){
+    public static Gebruiker getGebruikerFromResult(ResultSet result, Integer counter){
         try {
             Integer id = result.getInt("id");
             String naam = result.getString("naam");
             String wachtwoord = result.getString("wachtwoord");
             Integer isAdmin = result.getInt("isadmin");
             Integer punten = result.getInt("punten");
-            return new Gebruiker(id, naam, wachtwoord, isAdmin, punten, false);
+            return new Gebruiker(id, naam, wachtwoord, isAdmin, punten, counter,false);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -73,21 +76,19 @@ public class Gebruiker {
     }
 
 
-    public static ArrayList<Gebruiker> getGebruikersLijst() {
-        return gebruikerslijst;
-    }
+    public static ArrayList<Gebruiker> getGebruikersLijst() {return gebruikerslijst;}
 
-    public String getNaam() {
-        return naam;
-    }
+    public String getNaam() {return naam;}
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() {return id;}
 
     public Integer getIsAdmin() {return isAdmin;}
 
     public Integer getPunten() {return punten;}
+
+    public Integer getPlaats() {return plaats;}
+
+    public void setPlaats(Integer plaats) {this.plaats = plaats;}
 
     public void addRit(Rit rit) {
         this.ritten.add(rit);
