@@ -18,5 +18,12 @@
       <Button fx:id="Dashboard" layoutX="475.0" layoutY="321.0" mnemonicParsing="false" onAction="#Dashboard_button" text="Dashboard" />
       <Button fx:id="Gebruiker_verwijderen" layoutX="325.0" layoutY="86.0" mnemonicParsing="false" onAction="#Gebruiker_verwijderen" prefHeight="39.0" prefWidth="261.0" text="Gebruiker verwijderen" />
       <Button fx:id="Gebruiker_toevoegen" layoutX="14.0" layoutY="86.0" mnemonicParsing="false" onAction="#Gebruiker_toevoegen" prefHeight="39.0" prefWidth="261.0" text="Gebruiker toevoegen" />
+      <ComboBox layoutX="325.0" layoutY="164.0" prefHeight="39.0" prefWidth="261.0" />
+      <TextField layoutX="14.0" layoutY="164.0" prefHeight="39.0" prefWidth="261.0" />
+      <TextField layoutX="14.0" layoutY="240.0" prefHeight="39.0" prefWidth="261.0" />
+      <TextField layoutX="15.0" layoutY="321.0" prefHeight="39.0" prefWidth="261.0" />
+      <Text layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gebruikersnaam" wrappingWidth="261.0" />
+      <Text layoutX="14.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wachtwoord" wrappingWidth="261.0" />
+      <Text layoutX="15.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" wrappingWidth="261.0" />
    </children>
 </AnchorPane>

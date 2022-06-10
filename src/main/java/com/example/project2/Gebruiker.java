@@ -94,7 +94,7 @@ public class Gebruiker {
         this.ritten.add(rit);
     }
 
-    public Gebruiker getGebruikerOnName(Integer id) {
+    public Gebruiker getGebruikerOnId(Integer id) {
         Gebruiker match = null;
         for (Gebruiker gebruiker : gebruikerslijst){
             if (gebruiker.getId().equals(id)) {
@@ -102,6 +102,12 @@ public class Gebruiker {
             }
         }
         return match;
+    }
+    public static void deleteGebruikerOnId(Integer id) throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        PreparedStatement statement = connection.prepareStatement(" DELETE FROM gebruiker WHERE id=?");
+        statement.setInt (1,id);
+        statement.executeUpdate();
     }
 
     @Override

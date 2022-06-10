@@ -23,12 +23,12 @@ public class AdminPanel {
     }
 
     @FXML
-    void Gebruiker_verwijderen(ActionEvent event) {
+    void Gebruiker_verwijderen(ActionEvent event) throws IOException {
 
     }
 
     @FXML
-    void Gebruiker_toevoegen(ActionEvent event) {
+    void Gebruiker_toevoegen(ActionEvent event) throws IOException {
 
     }
 }
