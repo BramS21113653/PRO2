@@ -31,7 +31,7 @@ public class Gebruiker {
     }
 
     public void insertGebruiker() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
                 + " values (?, ?, ?, ?, ?)";
@@ -49,7 +49,7 @@ public class Gebruiker {
 
     public static void refreshGebruikerslijst() throws SQLException {
         gebruikerslijst.clear();
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
         Integer counter = 0;
@@ -91,7 +91,7 @@ public class Gebruiker {
         Integer waarde;
         waarde = this.punten + punten;
         this.punten = waarde;
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
         statement.setInt(1, waarde);
         statement.setInt(2, ingelogdId);
