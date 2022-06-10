@@ -64,8 +64,11 @@ public class AdminPanel implements Initializable {
         String wachtwoord = wachtwoord_tekst.getText();
         try {
             Gebruiker gebruiker = new Gebruiker(0, gebruikersnaam, wachtwoord, isadmin, 0, 0, true);
-        } catch(Exception kaas) {
-            System.out.println(kaas);
+        } catch(Exception e) {
+            gebruikersnaam_tekst.setText("Vul in");
+            wachtwoord_tekst.setText("Vul in");
+            admin_tekst.setText("Kies een 0/1");
+
         }
         admin_tekst.setText("");
         gebruikersnaam_tekst.setText("");
