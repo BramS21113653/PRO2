@@ -53,6 +53,12 @@ public class Dashboard<list> implements Initializable {
 
     @FXML
     void Confirm_button(ActionEvent event) {
+        try {
+            double input = Double.parseDouble(kilometer_field.getText().replaceAll(",","."));
+            System.out.println(input);
+        } catch (Exception e) {
+            System.out.println("Verkeerde input");
+        }
     }
 
     @FXML
