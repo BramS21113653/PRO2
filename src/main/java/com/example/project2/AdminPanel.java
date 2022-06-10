@@ -28,7 +28,7 @@ public class AdminPanel {
     private Button gebruiker_verwijderen;
 
     @FXML
-    private ComboBox<?> verwijderen_combobox;
+    private ComboBox<Gebruiker> verwijderen_combobox;
 
     @FXML
     void Dashboard_button(ActionEvent event) throws IOException {
@@ -48,7 +48,7 @@ public class AdminPanel {
 
     @FXML
     void verwijderen_combobox(ActionEvent event) {
-
+ 
     }
 
     @FXML
