@@ -31,4 +31,6 @@ public class AdminPanel {
     void Gebruiker_toevoegen(ActionEvent event) throws IOException {
 
     }
+
+
 }
