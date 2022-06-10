@@ -20,7 +20,7 @@ public class Gebruiker {
         this.punten = punten;
 
         if (insert == true) {
-            //insertGebruiker();
+            insertGebruiker();
             refreshGebruikerslijst();
         } else {
             gebruikerslijst.add(this);
@@ -44,7 +44,7 @@ public class Gebruiker {
         connection.close();
     }
 
-    public void refreshGebruikerslijst() throws SQLException {
+    public static void refreshGebruikerslijst() throws SQLException {
         gebruikerslijst.clear();
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         Statement statement = connection.createStatement();
