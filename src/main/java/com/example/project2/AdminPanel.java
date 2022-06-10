@@ -54,7 +54,13 @@ public class AdminPanel implements Initializable {
             verwijderen_combobox.setValue("");
             verwijderen_combobox.getItems().clear();
             for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
-                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+                if (Gebruiker.getIngelogdId() == gebruiker.getId()) {
+                    verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | IK");
+                } else if (gebruiker.getIsAdmin() == 1) {
+                    verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
+                } else {
+                    verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+                }
             }
         } catch(Exception e) {
 
@@ -78,8 +84,14 @@ public class AdminPanel implements Initializable {
         gebruikersnaam_tekst.setText("");
         wachtwoord_tekst.setText("");
         verwijderen_combobox.getItems().clear();
-        for(Gebruiker gebruiker : Gebruiker.getGebruikersLijst() ){
-            verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+        for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
+            if (Gebruiker.getIngelogdId() == gebruiker.getId()) {
+                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | IK");
+            } else if (gebruiker.getIsAdmin() == 1) {
+                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
+            } else {
+                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+            }
         }
         Gebruiker.refreshGebruikerslijst();
     }
@@ -103,8 +115,14 @@ public class AdminPanel implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        for(Gebruiker gebruiker : Gebruiker.getGebruikersLijst() ){
-            verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+        for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
+            if (Gebruiker.getIngelogdId() == gebruiker.getId()) {
+                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | IK");
+            } else if (gebruiker.getIsAdmin() == 1) {
+                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
+            } else {
+                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+            }
         }
     }
 }
