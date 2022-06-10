@@ -75,4 +75,5 @@ public class AdminPanel implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
     }
+    
 }
