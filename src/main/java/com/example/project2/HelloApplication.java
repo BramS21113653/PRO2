@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +26,10 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("BetaBit");
+
+        Image image = new Image("https://imgur.com/q4aD4K8.png");
+        stage.getIcons().add(image);
+
         stage.setScene(scene);
         stage.show();
     }
