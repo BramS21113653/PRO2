@@ -104,10 +104,12 @@ public class Gebruiker {
         return match;
     }
     public static void deleteGebruikerOnId(Integer id) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
-        PreparedStatement statement = connection.prepareStatement(" DELETE FROM gebruiker WHERE id=?");
-        statement.setInt (1,id);
-        statement.executeUpdate();
+        if (id != null) {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+            PreparedStatement statement = connection.prepareStatement(" DELETE FROM gebruiker WHERE id=?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
     }
 
     @Override

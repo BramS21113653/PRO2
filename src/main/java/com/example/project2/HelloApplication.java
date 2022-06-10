@@ -16,6 +16,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
+        Gebruiker gebruiker = new Gebruiker(1, "Niels", "ww", 1, 1, 0, true);
         Gebruiker.refreshGebruikerslijst();
         stg = stage;
         stage.setResizable(false);

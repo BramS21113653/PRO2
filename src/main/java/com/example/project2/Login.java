@@ -53,7 +53,7 @@ public class Login {
     private void checkLogin() throws IOException{
         HelloApplication h = new HelloApplication();
         try{
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
             Statement stat = con.createStatement();
             String sql = "select * from betabit.gebruiker";
             ResultSet rs = stat.executeQuery(sql);
