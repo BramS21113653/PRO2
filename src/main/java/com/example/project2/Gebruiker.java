@@ -51,7 +51,7 @@ public class Gebruiker {
         gebruikerslijst.clear();
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten` DESC");
+        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
         Integer counter = 0;
         try {
             while (result.next()) {

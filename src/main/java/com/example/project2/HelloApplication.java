@@ -16,7 +16,6 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        Gebruiker gebruiker = new Gebruiker(1, "Niels", "ww", 1, 1, 0, true);
         Vervoersmiddel benzineAuto = new Vervoersmiddel("Benzine Auto", 0.5);
         Vervoersmiddel dieselAuto = new Vervoersmiddel("Diesel Auto", 0.6);
         Vervoersmiddel elektrischeAuto = new Vervoersmiddel("Elektrische Auto", 0.5);
