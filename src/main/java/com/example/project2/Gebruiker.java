@@ -30,7 +30,7 @@ public class Gebruiker {
     }
 
     public void insertGebruiker() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
                 + " values (?, ?, ?, ?, ?)";
@@ -48,7 +48,7 @@ public class Gebruiker {
 
     public static void refreshGebruikerslijst() throws SQLException {
         gebruikerslijst.clear();
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten` DESC");
         Integer counter = 0;
@@ -104,7 +104,7 @@ public class Gebruiker {
         return match;
     }
     public static void deleteGebruikerOnId(Integer id) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         PreparedStatement statement = connection.prepareStatement(" DELETE FROM gebruiker WHERE id=?");
         statement.setInt (1,id);
         statement.executeUpdate();

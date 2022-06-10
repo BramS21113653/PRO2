@@ -2,16 +2,12 @@ package com.example.project2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class AdminPanel implements Initializable {
+public class AdminPanel {
 
     @FXML
     private TextField gebruikersnaam_tekst;
@@ -32,7 +28,7 @@ public class AdminPanel implements Initializable {
     private Button gebruiker_verwijderen;
 
     @FXML
-    private ComboBox<?> verwijderen_combobox;
+    private ComboBox<Gebruiker> verwijderen_combobox;
 
     @FXML
     void Dashboard_button(ActionEvent event) throws IOException {
@@ -52,7 +48,7 @@ public class AdminPanel implements Initializable {
 
     @FXML
     void verwijderen_combobox(ActionEvent event) {
-
+ 
     }
 
     @FXML
@@ -69,11 +65,8 @@ public class AdminPanel implements Initializable {
     void admin_tekst(ActionEvent event) {
 
     }
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
     }
-    
 }
