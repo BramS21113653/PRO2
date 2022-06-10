@@ -73,7 +73,7 @@ public class Dashboard<list> implements Initializable {
         keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter", "Elektrische Auto", "Diesel Auto", "Benzine Auto");
         colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
         colomPunten.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("punten"));
-        colomPlaats.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("id"));
+        colomPlaats.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("plaats"));
         tabelGegevens.getItems().removeAll();
         tabelGegevens.setItems(list);
     }
