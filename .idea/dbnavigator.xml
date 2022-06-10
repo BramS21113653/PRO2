@@ -36,7 +36,9 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="35d5081f-2bdc-41fc-ae0a-0463af42af8d" object-ref="schemas/betabit/tables/gebruiker" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="35d5081f-2bdc-41fc-ae0a-0463af42af8d" />

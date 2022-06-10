@@ -2,12 +2,16 @@ package com.example.project2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-public class AdminPanel {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AdminPanel implements Initializable {
 
     @FXML
     private TextField gebruikersnaam_tekst;
@@ -67,4 +71,8 @@ public class AdminPanel {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+    }
 }
