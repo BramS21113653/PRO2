@@ -46,23 +46,27 @@ public class AdminPanel implements Initializable {
 
     @FXML
     void gebruiker_verwijderen(ActionEvent event) throws SQLException {
-        String idString = verwijderen_combobox.getValue().replaceAll("[^0-9]", "");
-        Integer id = parseInt(idString);
-        deleteGebruikerOnId(id);
-        Gebruiker.refreshGebruikerslijst();
-        verwijderen_combobox.setValue("");
-        verwijderen_combobox.getItems().clear();
-        for(Gebruiker gebruiker : Gebruiker.getGebruikersLijst() ){
-            verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+        try {
+            String idString = verwijderen_combobox.getValue().replaceAll("[^0-9]", "");
+            Integer id = parseInt(idString);
+            deleteGebruikerOnId(id);
+            Gebruiker.refreshGebruikerslijst();
+            verwijderen_combobox.setValue("");
+            verwijderen_combobox.getItems().clear();
+            for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
+                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+            }
+        } catch(Exception e) {
+            
         }
     }
 
     @FXML
     void Gebruiker_toevoegen(ActionEvent event) throws SQLException {
-        Integer isadmin = parseInt(admin_tekst.getText());
-        String gebruikersnaam = gebruikersnaam_tekst.getText();
-        String wachtwoord = wachtwoord_tekst.getText();
         try {
+            Integer isadmin = parseInt(admin_tekst.getText());
+            String gebruikersnaam = gebruikersnaam_tekst.getText();
+            String wachtwoord = wachtwoord_tekst.getText();
             Gebruiker gebruiker = new Gebruiker(0, gebruikersnaam, wachtwoord, isadmin, 0, 0, true);
         } catch(Exception e) {
             gebruikersnaam_tekst.setText("Vul in");
@@ -87,20 +91,21 @@ public class AdminPanel implements Initializable {
 
     @FXML
     void gebruikersnaam_tekst(ActionEvent event) {
-
+        gebruikersnaam_tekst.setText("");
     }
 
     @FXML
     void wachtwoord_tekst(ActionEvent event) {
-
+        wachtwoord_tekst.setText("");
     }
 
     @FXML
     void admin_tekst(ActionEvent event) {
-
+        admin_tekst.setText("");
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         for(Gebruiker gebruiker : Gebruiker.getGebruikersLijst() ){
             verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
         }
