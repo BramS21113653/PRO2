@@ -32,17 +32,15 @@ public class Gebruiker {
         Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
                 + " values (?, ?, ?, ?, ?)";
+        Random rand = new Random();
+        Integer int_random = rand.nextInt(99999999);
         PreparedStatement preparedStmt = connection.prepareStatement(query);
+        preparedStmt.setInt (1,int_random);
         preparedStmt.setString (2, this.naam);
         preparedStmt.setString   (3, this.wachtwoord);
         preparedStmt.setInt(4, this.isAdmin);
         preparedStmt.setInt(5, this.punten);
         preparedStmt.execute();
-        ResultSet rs = stat.getGeneratedKeys();
-        if (rs.next()) {
-            int pk = rs.getInt(1);
-            System.out.println("Generated Key = " + pk);
-        }
         connection.close();
     }
 
@@ -50,8 +48,7 @@ public class Gebruiker {
         gebruikerslijst.clear();
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker`");
-
+        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
         try {
             while (result.next()) {
                 //gebruikers maken van database gegevens
@@ -60,7 +57,6 @@ public class Gebruiker {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
     }
     public static Gebruiker getGebruikerFromResult(ResultSet result){
         try {
