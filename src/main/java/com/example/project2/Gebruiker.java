@@ -10,6 +10,7 @@ public class Gebruiker {
     private Integer isAdmin;
     private Integer punten;
     private Integer plaats;
+    private static Integer ingelogdId;
     private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
 
@@ -86,6 +87,17 @@ public class Gebruiker {
 
     public Integer getPunten() {return punten;}
 
+    public void addPunten(Integer punten) throws SQLException {
+        Integer waarde;
+        waarde = this.punten + punten;
+        this.punten = waarde;
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
+        statement.setInt(1, waarde);
+        statement.setInt(2, ingelogdId);
+        statement.executeUpdate();
+    }
+
     public Integer getPlaats() {return plaats;}
 
     public void setPlaats(Integer plaats) {this.plaats = plaats;}
@@ -94,7 +106,15 @@ public class Gebruiker {
         this.ritten.add(rit);
     }
 
-    public Gebruiker getGebruikerOnId(Integer id) {
+    public static Integer getIngelogdId() {
+        return ingelogdId;
+    }
+
+    public static void setIngelogdId(Integer ingelogdId) {
+        Gebruiker.ingelogdId = ingelogdId;
+    }
+
+    public static Gebruiker getGebruikerOnId(Integer id) {
         Gebruiker match = null;
         for (Gebruiker gebruiker : gebruikerslijst){
             if (gebruiker.getId().equals(id)) {
@@ -114,9 +134,15 @@ public class Gebruiker {
 
     @Override
     public String toString() {
-        return  "Naam = " + naam + "\n" +
-                "Ritten = " + ritten + "\n" +
-                "IsAdmin = " + isAdmin + "\n";
+        return "Gebruiker{" +
+                "id=" + id +
+                ", naam='" + naam + '\'' +
+                ", wachtwoord='" + wachtwoord + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", punten=" + punten +
+                ", plaats=" + plaats +
+                ", ritten=" + ritten +
+                '}';
     }
 }
 

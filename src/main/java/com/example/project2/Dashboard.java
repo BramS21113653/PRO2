@@ -16,6 +16,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import static java.lang.Integer.parseInt;
+
 public class Dashboard<list> implements Initializable {
 
     @FXML
@@ -53,6 +55,26 @@ public class Dashboard<list> implements Initializable {
 
     @FXML
     void Confirm_button(ActionEvent event) {
+        try {
+            double multiplier =0.0;
+            for (Vervoersmiddel vervoersmiddel : Vervoersmiddel.getVervoersmiddelen()) {
+                if (vervoersmiddel.getVervoersmiddel().equals(keuze_Menu.getValue())) {
+                    multiplier = vervoersmiddel.getMultiplier();
+                }
+            }
+            Gebruiker.getGebruikerOnId(Gebruiker.getIngelogdId()).addPunten((int) Math.round(parseInt(kilometer_field.getText()) * multiplier));
+            kilometer_field.setText("");
+            Gebruiker.refreshGebruikerslijst();
+            ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
+            colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
+            colomPunten.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("punten"));
+            colomPlaats.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("plaats"));
+            tabelGegevens.getItems().removeAll();
+            tabelGegevens.setItems(list);
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            kilometer_field.setPromptText("Voer aantal kilomter in");
+        }
     }
 
     @FXML

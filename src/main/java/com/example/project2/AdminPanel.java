@@ -57,7 +57,7 @@ public class AdminPanel implements Initializable {
                 verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
             }
         } catch(Exception e) {
-            
+
         }
     }
 
@@ -69,9 +69,9 @@ public class AdminPanel implements Initializable {
             String wachtwoord = wachtwoord_tekst.getText();
             Gebruiker gebruiker = new Gebruiker(0, gebruikersnaam, wachtwoord, isadmin, 0, 0, true);
         } catch(Exception e) {
-            gebruikersnaam_tekst.setText("Vul in");
-            wachtwoord_tekst.setText("Vul in");
-            admin_tekst.setText("Kies een 0/1");
+            gebruikersnaam_tekst.setPromptText("Vul nieuwe gebruiker in");
+            wachtwoord_tekst.setPromptText("Vul wachtwoord in");
+            admin_tekst.setPromptText("Kies een 0/1");
 
         }
         admin_tekst.setText("");
@@ -91,17 +91,14 @@ public class AdminPanel implements Initializable {
 
     @FXML
     void gebruikersnaam_tekst(ActionEvent event) {
-        gebruikersnaam_tekst.setText("");
     }
 
     @FXML
     void wachtwoord_tekst(ActionEvent event) {
-        wachtwoord_tekst.setText("");
     }
 
     @FXML
     void admin_tekst(ActionEvent event) {
-        admin_tekst.setText("");
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

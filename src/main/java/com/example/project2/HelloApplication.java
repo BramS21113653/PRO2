@@ -17,6 +17,14 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         Gebruiker gebruiker = new Gebruiker(1, "Niels", "ww", 1, 1, 0, true);
+        Vervoersmiddel benzineAuto = new Vervoersmiddel("Benzine Auto", 0.5);
+        Vervoersmiddel dieselAuto = new Vervoersmiddel("Diesel Auto", 0.6);
+        Vervoersmiddel elektrischeAuto = new Vervoersmiddel("Elektrische Auto", 0.5);
+        Vervoersmiddel scooter = new Vervoersmiddel("Scooter", 0.4);
+        Vervoersmiddel motor = new Vervoersmiddel("Motor", 0.4);
+        Vervoersmiddel fiets = new Vervoersmiddel("Fiets", 0.1);
+        Vervoersmiddel ov = new Vervoersmiddel("Ov", 0.2);
+        Vervoersmiddel lopen = new Vervoersmiddel("Lopen", 0);
         Gebruiker.refreshGebruikerslijst();
         stg = stage;
         stage.setResizable(false);
@@ -38,15 +46,5 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) throws SQLException {
         launch();
-        Vervoersmiddel benzineAuto = new Vervoersmiddel("benzine auto", 2269);
-        Vervoersmiddel dieselAuto = new Vervoersmiddel("diesel auto", 2606);
-        //todo uitstootPerLiter aanpassen hieronder
-        Vervoersmiddel elektrischeAuto = new Vervoersmiddel("elektrische auto", 0);
-        Vervoersmiddel scooter = new Vervoersmiddel("scooter", 2269);
-        Vervoersmiddel motor = new Vervoersmiddel("motor", 2269);
-        Vervoersmiddel fiets = new Vervoersmiddel("fiets", 0);
-        //todo uitstootPerLiter aanpassen hieronder
-        Vervoersmiddel ov = new Vervoersmiddel("ov", 0);
-        Vervoersmiddel lopen = new Vervoersmiddel("lopen", 0);
     }
 }
