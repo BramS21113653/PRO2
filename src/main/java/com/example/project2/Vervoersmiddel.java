@@ -5,15 +5,17 @@ import java.util.ArrayList;
 public class Vervoersmiddel {
     private static ArrayList<Vervoersmiddel> vervoersmiddelen;
     private String vervoersmiddel;
-    private Integer uitstootPerLiter;
+    private double multiplier;
+    private static ArrayList<Vervoersmiddel> vervoersmiddelen = new ArrayList<Vervoersmiddel>();;
 
-    public Vervoersmiddel (String vervoersmiddel, Integer uitstootPerLiter) {
+    public Vervoersmiddel (String vervoersmiddel, double multiplier) {
         this.vervoersmiddel = vervoersmiddel;
-        this.uitstootPerLiter = uitstootPerLiter;
+        this.multiplier = multiplier;
+        vervoersmiddelen.add(this);
     }
 
-    public Integer getUitstootPerLiter() {
-        return this.uitstootPerLiter;
+    public double getMultiplier() {
+        return this.multiplier;
     }
 
     public String getVervoersmiddel() {

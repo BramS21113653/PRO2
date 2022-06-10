@@ -53,7 +53,7 @@ public class Login {
     private void checkLogin() throws IOException{
         HelloApplication h = new HelloApplication();
         try{
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
             Statement stat = con.createStatement();
             String sql = "select * from betabit.gebruiker";
             ResultSet rs = stat.executeQuery(sql);
@@ -64,6 +64,7 @@ public class Login {
                 int isadmin = rs.getInt("isadmin");
                 if (Username.getText().toString().equals(DB_username) && password.getText().toString().equals(DB_password)) {
                     h.changeScene("Dashboard.fxml");
+                    Gebruiker.setIngelogdId(id_col);
                 } else if (Username.getText().isEmpty() && password.getText().isEmpty()) {
                     wrongLogin.setText("Please enter your data.");
                 } else {

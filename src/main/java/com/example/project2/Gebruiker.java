@@ -8,84 +8,68 @@ public class Gebruiker {
     private String naam;
     private String wachtwoord;
     private Integer isAdmin;
+    private Integer punten;
+    private Integer plaats;
+    private static Integer ingelogdId;
     private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
-    //db
-    private static String dbUrl = "jdbc:mysql://localhost:3306/betabit";
-    private static String dbUsername = "root";
-    private static String dbPassword = "root";
 
-    public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load JDBC driver: " + e.getMessage());
-        } catch (SQLException e) {
-            System.out.println("Could not connect to DB: " + e.getMessage());
+    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten, Integer plaats, Boolean insert) throws SQLException {
+        this.id = id;
+        this.naam = naam;
+        this.wachtwoord = wachtwoord;
+        this.isAdmin = isAdmin;
+        this.punten = punten;
+        this.plaats = plaats;
+        if (insert == true) {
+            insertGebruiker();
+            refreshGebruikerslijst();
+        } else {
+
+            gebruikerslijst.add(this);
         }
-        return connection;
-    }
-    //db
-    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Boolean insert) throws SQLException {
-        this.id = id;
-        this.naam = naam;
-        this.wachtwoord = wachtwoord;
-        this.isAdmin = isAdmin;
-        insertGebruiker();
-        refreshGebruikerslijst();
-    }
-    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin) throws SQLException {
-        this.id = id;
-        this.naam = naam;
-        this.wachtwoord = wachtwoord;
-        this.isAdmin = isAdmin;
-        //gebruikerslijst invullen
-        gebruikerslijst.add(this);
     }
 
     public void insertGebruiker() throws SQLException {
-        Connection connecton = getConnection();
-        String query = " insert into gebruiker (id, naam, wachtwoord, isadmin)"
-                + " values (?, ?, ?, ?)";
-        PreparedStatement preparedStmt = connecton.prepareStatement(query);
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        Statement stat = connection.createStatement();
+        String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
+                + " values (?, ?, ?, ?, ?)";
+        Random rand = new Random();
+        Integer int_random = rand.nextInt(99999999);
+        PreparedStatement preparedStmt = connection.prepareStatement(query);
+        preparedStmt.setInt (1,int_random);
         preparedStmt.setString (2, this.naam);
         preparedStmt.setString   (3, this.wachtwoord);
         preparedStmt.setInt(4, this.isAdmin);
-
+        preparedStmt.setInt(5, this.punten);
         preparedStmt.execute();
-
-        connecton.close();
+        connection.close();
     }
 
-    public void refreshGebruikerslijst() throws SQLException {
-        //gebruikerslijst legen
+    public static void refreshGebruikerslijst() throws SQLException {
         gebruikerslijst.clear();
-        Statement statement = null;
-        ResultSet result = null;
-        Connection connecton = getConnection();
-        statement = connecton.createStatement();
-        //database tabellen inlezen
-        result = statement.executeQuery("SELECT * FROM `gebruiker`");
-
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten` DESC");
+        Integer counter = 0;
         try {
             while (result.next()) {
-                //gebruikers maken van database gegevens
-                Gebruiker gebruiker = getGebruikerFromResult(result);
+                counter ++;
+                Gebruiker gebruiker = getGebruikerFromResult(result, counter);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
     }
-    public static Gebruiker getGebruikerFromResult(ResultSet result){
+    public static Gebruiker getGebruikerFromResult(ResultSet result, Integer counter){
         try {
             Integer id = result.getInt("id");
             String naam = result.getString("naam");
             String wachtwoord = result.getString("wachtwoord");
             Integer isAdmin = result.getInt("isadmin");
-            return new Gebruiker(id, naam, wachtwoord, isAdmin);
+            Integer punten = result.getInt("punten");
+            return new Gebruiker(id, naam, wachtwoord, isAdmin, punten, counter,false);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -93,38 +77,72 @@ public class Gebruiker {
     }
 
 
-    public static ArrayList<Gebruiker> getGebruikersLijst() {
-        return gebruikerslijst;
-    }
+    public static ArrayList<Gebruiker> getGebruikersLijst() {return gebruikerslijst;}
 
-    public String getNaam() {
-        return naam;
-    }
+    public String getNaam() {return naam;}
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() {return id;}
 
     public Integer getIsAdmin() {return isAdmin;}
+
+    public Integer getPunten() {return punten;}
+
+    public void addPunten(Integer punten) throws SQLException {
+        Integer waarde;
+        waarde = this.punten + punten;
+        this.punten = waarde;
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
+        statement.setInt(1, waarde);
+        statement.setInt(2, ingelogdId);
+        statement.executeUpdate();
+    }
+
+    public Integer getPlaats() {return plaats;}
+
+    public void setPlaats(Integer plaats) {this.plaats = plaats;}
 
     public void addRit(Rit rit) {
         this.ritten.add(rit);
     }
 
-public Gebruiker getGebruikerOnName(Integer id) {
-    Gebruiker match = null;
-    for (Gebruiker gebruiker : gebruikerslijst){
-        if (gebruiker.getId().equals(id)) {
-            match = gebruiker;
+    public static Integer getIngelogdId() {
+        return ingelogdId;
+    }
+
+    public static void setIngelogdId(Integer ingelogdId) {
+        Gebruiker.ingelogdId = ingelogdId;
+    }
+
+    public static Gebruiker getGebruikerOnId(Integer id) {
+        Gebruiker match = null;
+        for (Gebruiker gebruiker : gebruikerslijst){
+            if (gebruiker.getId().equals(id)) {
+                match = gebruiker;
+            }
+        }
+        return match;
+    }
+    public static void deleteGebruikerOnId(Integer id) throws SQLException {
+        if (id != null) {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+            PreparedStatement statement = connection.prepareStatement(" DELETE FROM gebruiker WHERE id=?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
         }
     }
-    return match;
-}
 
     @Override
     public String toString() {
-        return  "Naam = " + naam + "\n" +
-                "Ritten = " + ritten + "\n" +
-                "IsAdmin = " + isAdmin + "\n";
+        return "Gebruiker{" +
+                "id=" + id +
+                ", naam='" + naam + '\'' +
+                ", wachtwoord='" + wachtwoord + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", punten=" + punten +
+                ", plaats=" + plaats +
+                ", ritten=" + ritten +
+                '}';
     }
 }
+
