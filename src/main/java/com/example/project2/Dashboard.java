@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -28,6 +29,9 @@ public class Dashboard<list> implements Initializable {
 
     @FXML
     private Button confirmButton;
+
+    @FXML
+    private ImageView dashboard_image;
 
     @FXML
     private ComboBox keuze_Menu;
@@ -76,6 +80,7 @@ public class Dashboard<list> implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
         ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
         keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter", "Elektrische Auto", "Diesel Auto", "Benzine Auto");
         colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));

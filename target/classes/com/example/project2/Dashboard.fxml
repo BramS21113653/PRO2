@@ -8,6 +8,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<<<<<<< HEAD
+=======
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+>>>>>>> f74c34b253e7bfe9536f11bb52178b1e61150367
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -38,6 +43,14 @@
       </TableView>
       <Button fx:id="confirmButton" layoutX="400.0" layoutY="308.0" mnemonicParsing="false" onAction="#Confirm_button" text="Confirm" AnchorPane.rightAnchor="140.8" />
       <Button fx:id="adminButton" layoutX="491.0" layoutY="308.0" mnemonicParsing="false" onAction="#Admin_button" prefHeight="26.0" prefWidth="59.0" text="Admin" />
+<<<<<<< HEAD
+=======
+      <ImageView fitHeight="108.0" fitWidth="166.0" layoutX="421.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../Downloads/unknown.png" />
+         </image>
+      </ImageView>
+>>>>>>> f74c34b253e7bfe9536f11bb52178b1e61150367
    </children>
    <rotationAxis>
       <Point3D />
