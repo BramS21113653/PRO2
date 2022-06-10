@@ -33,6 +33,9 @@ public class Dashboard<list> implements Initializable {
     private ComboBox keuze_Menu;
 
     @FXML
+    private TextField kilometer_field;
+
+    @FXML
     private Button logOut;
 
     @FXML
@@ -46,6 +49,10 @@ public class Dashboard<list> implements Initializable {
 
     @FXML
     void Confirm_button(ActionEvent event) {
+    }
+
+    @FXML
+    void Kilometer_Input(ActionEvent event) {
     }
 
     @FXML
