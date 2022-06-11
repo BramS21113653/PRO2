@@ -71,6 +71,7 @@ public class AdminPanel implements Initializable {
 
         }
         admin_tekst.setText("");
+        wachtwoord_tekst.setText("");
         gebruikersnaam_tekst.setText("");
         refreshbox();
         Gebruiker.refreshGebruikerslijst();

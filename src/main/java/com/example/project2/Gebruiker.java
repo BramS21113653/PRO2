@@ -126,6 +126,10 @@ public class Gebruiker {
         Gebruiker.ingelogdId = ingelogdId;
     }
 
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
+
     public static Gebruiker getGebruikerOnId(Integer id) {
         Gebruiker match = null;
         for (Gebruiker gebruiker : gebruikerslijst){
