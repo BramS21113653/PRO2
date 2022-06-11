@@ -147,6 +147,7 @@ public class Dashboard<list> implements Initializable {
         tabelGegevens.setItems(list);
     }
     private void setcolor() throws SQLException {
+        adminButton.setStyle("-fx-border-color: linear-gradient(#bc0000, #f50c0c);");
         footprint1.setVisible(true);
         footprint2.setVisible(false);
         footprint3.setVisible(false);
