@@ -16,11 +16,11 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        Vervoersmiddel benzineAuto = new Vervoersmiddel("Benzine Auto", 0.5);
-        Vervoersmiddel dieselAuto = new Vervoersmiddel("Diesel Auto", 0.6);
+        Vervoersmiddel benzineAuto = new Vervoersmiddel("Benzine Auto", 1.0);
+        Vervoersmiddel dieselAuto = new Vervoersmiddel("Diesel Auto", 1.1);
         Vervoersmiddel elektrischeAuto = new Vervoersmiddel("Elektrische Auto", 0.5);
-        Vervoersmiddel scooter = new Vervoersmiddel("Scooter", 0.4);
-        Vervoersmiddel motor = new Vervoersmiddel("Motor", 0.4);
+        Vervoersmiddel scooter = new Vervoersmiddel("Scooter", 0.8);
+        Vervoersmiddel motor = new Vervoersmiddel("Motor", 1.0);
         Vervoersmiddel fiets = new Vervoersmiddel("Fiets", 0.1);
         Vervoersmiddel ov = new Vervoersmiddel("Ov", 0.2);
         Vervoersmiddel lopen = new Vervoersmiddel("Lopen", 0);

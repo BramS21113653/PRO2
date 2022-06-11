@@ -33,7 +33,20 @@ public class Dashboard<list> implements Initializable {
     private Button confirmButton;
 
     @FXML
-    private ImageView dashboard_image;
+    private Label dashboard_title;
+
+    @FXML
+    private Button dashboard_verzilveren;
+    @FXML
+    private ImageView footprint1;
+    @FXML
+    private ImageView footprint2;
+    @FXML
+    private ImageView footprint3;
+    @FXML
+    private ImageView footprint4;
+    @FXML
+    private ImageView footprint5;
 
     @FXML
     private ComboBox keuze_Menu;
@@ -54,7 +67,15 @@ public class Dashboard<list> implements Initializable {
     }
 
     @FXML
-    void Confirm_button(ActionEvent event) {
+    void dashboard_verzilveren(ActionEvent event) throws SQLException {
+        Gebruiker.getIngelogdId().setPunten(0);
+        Gebruiker.resetPunten();
+        refreshDash();
+        setcolor();
+    }
+
+    @FXML
+    void Confirm_button(ActionEvent event) throws SQLException {
         try {
             double multiplier =0.0;
             for (Vervoersmiddel vervoersmiddel : Vervoersmiddel.getVervoersmiddelen()) {
@@ -62,19 +83,17 @@ public class Dashboard<list> implements Initializable {
                     multiplier = vervoersmiddel.getMultiplier();
                 }
             }
-            Gebruiker.getGebruikerOnId(Gebruiker.getIngelogdId()).addPunten((int) Math.round(parseInt(kilometer_field.getText()) * multiplier));
+            if (parseInt(kilometer_field.getText()) > 50) {
+                kilometer_field.setText("50");
+            }
+            Gebruiker.getIngelogdId().addPunten((int) Math.round(parseInt(kilometer_field.getText()) * multiplier));
             kilometer_field.setText("");
-            Gebruiker.refreshGebruikerslijst();
-            ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
-            colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
-            colomPunten.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("punten"));
-            colomPlaats.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("plaats"));
-            tabelGegevens.getItems().removeAll();
-            tabelGegevens.setItems(list);
         } catch(Exception e) {
             System.out.println(e.getMessage());
             kilometer_field.setPromptText("Voer aantal kilomter in");
         }
+        setcolor();
+        refreshDash();
     }
 
     @FXML
@@ -95,7 +114,7 @@ public class Dashboard<list> implements Initializable {
     @FXML
     void Admin_button(ActionEvent event) throws IOException {
         HelloApplication h = new HelloApplication();
-        if (Gebruiker.getGebruikerOnId(Gebruiker.getIngelogdId()).getIsAdmin() != 0) {
+        if (Gebruiker.getIngelogdId().getIsAdmin() != 0) {
             h.changeScene("AdminPanel.fxml");
         }
     }
@@ -104,6 +123,21 @@ public class Dashboard<list> implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            refreshDash();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            setcolor();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void refreshDash() throws SQLException {
+        Gebruiker.refreshGebruikerslijst();
+
         ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
         keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter", "Elektrische Auto", "Diesel Auto", "Benzine Auto");
         colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
@@ -111,5 +145,28 @@ public class Dashboard<list> implements Initializable {
         colomPlaats.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("plaats"));
         tabelGegevens.getItems().removeAll();
         tabelGegevens.setItems(list);
+    }
+    private void setcolor() throws SQLException {
+        footprint1.setVisible(true);
+        footprint2.setVisible(false);
+        footprint3.setVisible(false);
+        footprint4.setVisible(false);
+        footprint5.setVisible(false);
+        if (Gebruiker.getIngelogdId().getPunten() <= 150) {
+            footprint1.setVisible(true);
+            dashboard_title.setStyle("-fx-background-color: #0dbc00");
+        } else if (Gebruiker.getIngelogdId().getPunten() <= 250) {
+            footprint2.setVisible(true);
+            dashboard_title.setStyle("-fx-background-color: #9fbc00");
+        } else if (Gebruiker.getIngelogdId().getPunten() <= 350) {
+            footprint3.setVisible(true);
+            dashboard_title.setStyle("-fx-background-color: #bcb100");
+        } else if (Gebruiker.getIngelogdId().getPunten() <= 450) {
+            footprint4.setVisible(true);
+            dashboard_title.setStyle("-fx-background-color: #bc6a00");
+        } else if (Gebruiker.getIngelogdId().getPunten() >= 550) {
+            footprint5.setVisible(true);
+            dashboard_title.setStyle("-fx-background-color: #bc0000");
+        }
     }
 }

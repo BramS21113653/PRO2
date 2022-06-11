@@ -51,17 +51,7 @@ public class AdminPanel implements Initializable {
             Integer id = parseInt(idString);
             deleteGebruikerOnId(id);
             Gebruiker.refreshGebruikerslijst();
-            verwijderen_combobox.setValue("");
-            verwijderen_combobox.getItems().clear();
-            for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
-                if (Gebruiker.getIngelogdId() == gebruiker.getId()) {
-                    verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | IK");
-                } else if (gebruiker.getIsAdmin() == 1) {
-                    verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
-                } else {
-                    verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
-                }
-            }
+            refreshbox();
         } catch(Exception e) {
 
         }
@@ -82,17 +72,7 @@ public class AdminPanel implements Initializable {
         }
         admin_tekst.setText("");
         gebruikersnaam_tekst.setText("");
-        wachtwoord_tekst.setText("");
-        verwijderen_combobox.getItems().clear();
-        for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
-            if (Gebruiker.getIngelogdId() == gebruiker.getId()) {
-                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | IK");
-            } else if (gebruiker.getIsAdmin() == 1) {
-                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
-            } else {
-                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
-            }
-        }
+        refreshbox();
         Gebruiker.refreshGebruikerslijst();
     }
 
@@ -112,17 +92,20 @@ public class AdminPanel implements Initializable {
     @FXML
     void admin_tekst(ActionEvent event) {
     }
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
+    private void refreshbox() {
+        verwijderen_combobox.setValue("");
+        verwijderen_combobox.getItems().clear();
         for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
-            if (Gebruiker.getIngelogdId() == gebruiker.getId()) {
-                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | IK");
-            } else if (gebruiker.getIsAdmin() == 1) {
+            if (gebruiker.getIsAdmin() == 1) {
                 verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
             } else {
                 verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
             }
         }
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        refreshbox();
     }
 }

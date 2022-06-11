@@ -10,7 +10,7 @@ public class Gebruiker {
     private Integer isAdmin;
     private Integer punten;
     private Integer plaats;
-    private static Integer ingelogdId;
+    private static Gebruiker ingelogdId;
     private ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
 
@@ -28,6 +28,14 @@ public class Gebruiker {
 
             gebruikerslijst.add(this);
         }
+    }
+
+    public static void resetPunten() throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ?");
+        statement.setInt(1, 0);
+        statement.executeUpdate();
+        refreshGebruikerslijst();
     }
 
     public void insertGebruiker() throws SQLException {
@@ -69,6 +77,7 @@ public class Gebruiker {
             String wachtwoord = result.getString("wachtwoord");
             Integer isAdmin = result.getInt("isadmin");
             Integer punten = result.getInt("punten");
+            System.out.println(punten);
             return new Gebruiker(id, naam, wachtwoord, isAdmin, punten, counter,false);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -87,6 +96,10 @@ public class Gebruiker {
 
     public Integer getPunten() {return punten;}
 
+    public void setPunten(Integer punten) {
+        this.punten = punten;
+    }
+
     public void addPunten(Integer punten) throws SQLException {
         Integer waarde;
         waarde = this.punten + punten;
@@ -94,7 +107,7 @@ public class Gebruiker {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
         statement.setInt(1, waarde);
-        statement.setInt(2, ingelogdId);
+        statement.setInt(2, ingelogdId.getId());
         statement.executeUpdate();
     }
 
@@ -106,11 +119,11 @@ public class Gebruiker {
         this.ritten.add(rit);
     }
 
-    public static Integer getIngelogdId() {
+    public static Gebruiker getIngelogdId() {
         return ingelogdId;
     }
 
-    public static void setIngelogdId(Integer ingelogdId) {
+    public static void setIngelogdId(Gebruiker ingelogdId) {
         Gebruiker.ingelogdId = ingelogdId;
     }
 
@@ -119,6 +132,8 @@ public class Gebruiker {
         for (Gebruiker gebruiker : gebruikerslijst){
             if (gebruiker.getId().equals(id)) {
                 match = gebruiker;
+                System.out.println(match);
+                break;
             }
         }
         return match;

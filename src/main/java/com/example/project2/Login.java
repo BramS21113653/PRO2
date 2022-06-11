@@ -63,12 +63,12 @@ public class Login {
                 String DB_password = rs.getString("wachtwoord");
                 int isadmin = rs.getInt("isadmin");
                 if (Username.getText().toString().equals(DB_username) && password.getText().toString().equals(DB_password)) {
+                    Gebruiker.setIngelogdId(Gebruiker.getGebruikerOnId(id_col));
                     h.changeScene("Dashboard.fxml");
-                    Gebruiker.setIngelogdId(id_col);
                 } else if (Username.getText().isEmpty() && password.getText().isEmpty()) {
-                    wrongLogin.setText("Please enter your data.");
+                    wrongLogin.setText("Vul alle vakken in");
                 } else {
-                    wrongLogin.setText("Wrong username or password!");
+                    wrongLogin.setText("Wachtwoord of gebruikersnaam onjuist");
                 }
             }
 

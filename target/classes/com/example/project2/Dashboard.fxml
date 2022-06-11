@@ -15,6 +15,7 @@
 
 <AnchorPane maxHeight="720.0" maxWidth="1080.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project2.Dashboard">
    <children>
+      <Button id="dashboard_verzilveren" fx:id="dashboard_verzilveren" layoutX="50.0" layoutY="338.0" mnemonicParsing="false" onAction="#dashboard_verzilveren" prefHeight="26.0" prefWidth="286.0" text="Verzilver deze maand" />
       <ImageView fx:id="dashboard_image" fitHeight="108.0" fitWidth="166.0" layoutX="421.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../../Downloads/unknown.png" />
@@ -23,7 +24,7 @@
       <ComboBox fx:id="keuze_Menu" layoutX="400.0" layoutY="213.0" prefWidth="150.0" />
       <TextField fx:id="kilometer_field" layoutX="400.0" layoutY="259.0" onAction="#Kilometer_Input" promptText="Kilometers" />
       <Label alignment="CENTER" layoutY="380.0" prefHeight="30.0" prefWidth="610.0" style="-fx-background-color: #CCCCCC;" text="Copyright 2022 BetaBit©" AnchorPane.bottomAnchor="-2.1316282072803006E-14" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA;" text="Dashboard" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label id="dashboard_title" fx:id="dashboard_title" alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA;" text="Dashboard" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -45,6 +46,36 @@
       </TableView>
       <Button fx:id="confirmButton" layoutX="400.0" layoutY="308.0" mnemonicParsing="false" onAction="#Confirm_button" text="Confirm" AnchorPane.rightAnchor="140.8" />
       <Button fx:id="adminButton" layoutX="491.0" layoutY="308.0" mnemonicParsing="false" onAction="#Admin_button" prefHeight="26.0" prefWidth="59.0" text="Admin" />
+      <ImageView id="footprint" fx:id="footprint" fitHeight="130.0" fitWidth="130.0" layoutX="410.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/footprint_black.png" />
+         </image>
+      </ImageView>
+      <ImageView id="footprint1" fx:id="footprint1" fitHeight="130.0" fitWidth="130.0" layoutX="410.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/footprint_1.png" />
+         </image>
+      </ImageView>
+      <ImageView id="footprint2" fx:id="footprint2" fitHeight="130.0" fitWidth="130.0" layoutX="410.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/footprint_2.png" />
+         </image>
+      </ImageView>
+      <ImageView id="footprint3" fx:id="footprint3" fitHeight="130.0" fitWidth="130.0" layoutX="410.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/footprint_3.png" />
+         </image>
+      </ImageView>
+      <ImageView id="footprint4" fx:id="footprint4" fitHeight="130.0" fitWidth="130.0" layoutX="410.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/footprint_4.png" />
+         </image>
+      </ImageView>
+      <ImageView id="footprint5" fx:id="footprint5" fitHeight="130.0" fitWidth="130.0" layoutX="410.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/footprint_5.png" />
+         </image>
+      </ImageView>
    </children>
    <rotationAxis>
       <Point3D />
