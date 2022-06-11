@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project2.AdminPanel">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project2.Wachtwoord">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA;" text="Adminpanel">
+      <Label alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#1BB3EA, #6dd8ff); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;" text="Wachtwoord Wijzigen">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
       <Label alignment="CENTER" layoutY="371.0" prefHeight="30.0" prefWidth="600.0" style="-fx-background-color: #CCCCCC;" text="Copyright 2022 BetaBit©" />
-      <Button fx:id="Dashboard" layoutX="475.0" layoutY="321.0" mnemonicParsing="false" onAction="#Dashboard_button" text="Dashboard" />
-      <Button fx:id="gebruiker_verwijderen" layoutX="325.0" layoutY="86.0" mnemonicParsing="false" onAction="#gebruiker_verwijderen" prefHeight="39.0" prefWidth="261.0" text="Gebruiker verwijderen" />
-      <Button fx:id="Gebruiker_toevoegen" layoutX="14.0" layoutY="86.0" mnemonicParsing="false" onAction="#Gebruiker_toevoegen" prefHeight="39.0" prefWidth="261.0" text="Gebruiker toevoegen" />
-      <ComboBox fx:id="verwijderen_combobox" layoutX="325.0" layoutY="164.0" onAction="#verwijderen_combobox" prefHeight="39.0" prefWidth="261.0" />
-      <TextField fx:id="gebruikersnaam_tekst" layoutX="14.0" layoutY="164.0" onAction="#gebruikersnaam_tekst" prefHeight="39.0" prefWidth="261.0" promptText="Gebruikersnaam" />
-      <TextField fx:id="wachtwoord_tekst" layoutX="14.0" layoutY="240.0" onAction="#wachtwoord_tekst" prefHeight="39.0" prefWidth="261.0" promptText="Wachtwoord" />
-      <TextField fx:id="admin_tekst" layoutX="15.0" layoutY="321.0" onAction="#admin_tekst" prefHeight="39.0" prefWidth="261.0" promptText="Admin (0/1)" />
-      <Text layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gebruikersnaam" wrappingWidth="261.0" />
-      <Text layoutX="14.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wachtwoord" wrappingWidth="261.0" />
-      <Text layoutX="15.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" wrappingWidth="261.0" />
    </children>
 </AnchorPane>

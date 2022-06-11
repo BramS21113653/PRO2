@@ -139,7 +139,7 @@ public class Dashboard<list> implements Initializable {
         Gebruiker.refreshGebruikerslijst();
 
         ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
-        keuze_Menu.getItems().addAll("Lopen", "Ov", "Fiets", "Motor", "Scooter", "Elektrische Auto", "Diesel Auto", "Benzine Auto");
+        keuze_Menu.getItems().setAll("Lopen", "Ov", "Fiets", "Motor", "Scooter", "Elektrische Auto", "Diesel Auto", "Benzine Auto");
         colomNaam.setCellValueFactory(new PropertyValueFactory<Gebruiker, String>("naam"));
         colomPunten.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("punten"));
         colomPlaats.setCellValueFactory(new PropertyValueFactory<Gebruiker, Integer>("plaats"));
@@ -154,19 +154,24 @@ public class Dashboard<list> implements Initializable {
         footprint5.setVisible(false);
         if (Gebruiker.getIngelogdId().getPunten() <= 150) {
             footprint1.setVisible(true);
-            dashboard_title.setStyle("-fx-background-color: #0dbc00");
+            dashboard_title.setStyle("-fx-background-color: #0dbc00; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#0dbc00, #1ae20c); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
+            dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#0dbc00, #1ae20c);");
         } else if (Gebruiker.getIngelogdId().getPunten() <= 250) {
             footprint2.setVisible(true);
-            dashboard_title.setStyle("-fx-background-color: #9fbc00");
+            dashboard_title.setStyle("-fx-background-color: #9fbc00; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#9fbc00, #cef209); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
+            dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#9fbc00, #cef209);");
         } else if (Gebruiker.getIngelogdId().getPunten() <= 350) {
             footprint3.setVisible(true);
-            dashboard_title.setStyle("-fx-background-color: #bcb100");
+            dashboard_title.setStyle("-fx-background-color: #bcb100; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#bcb100, #e8db0c); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
+            dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#bcb100, #e8db0c);");
         } else if (Gebruiker.getIngelogdId().getPunten() <= 450) {
             footprint4.setVisible(true);
-            dashboard_title.setStyle("-fx-background-color: #bc6a00");
-        } else if (Gebruiker.getIngelogdId().getPunten() >= 550) {
+            dashboard_title.setStyle("-fx-background-color: #bc6a00; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#bc6a00, #f68d05); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
+            dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#bc6a00, #f68d05);");
+        } else if (Gebruiker.getIngelogdId().getPunten() >= 450) {
             footprint5.setVisible(true);
-            dashboard_title.setStyle("-fx-background-color: #bc0000");
+            dashboard_title.setStyle("-fx-background-color: #bc0000; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#bc0000, #f50c0c); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
+            dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#bc0000, #f50c0c);");
         }
     }
 }

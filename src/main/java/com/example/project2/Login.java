@@ -47,7 +47,7 @@ public class Login {
     @FXML
     void wachtwoordReset_button(ActionEvent event) throws IOException{
         HelloApplication h = new HelloApplication();
-        h.changeScene("Dashboard.fxml");
+        h.changeScene("Wachtwoord.fxml");
     }
 
     private void checkLogin() throws IOException{

@@ -24,7 +24,7 @@
       <ComboBox fx:id="keuze_Menu" layoutX="400.0" layoutY="213.0" prefWidth="150.0" />
       <TextField fx:id="kilometer_field" layoutX="400.0" layoutY="259.0" onAction="#Kilometer_Input" promptText="Kilometers" />
       <Label alignment="CENTER" layoutY="380.0" prefHeight="30.0" prefWidth="610.0" style="-fx-background-color: #CCCCCC;" text="Copyright 2022 BetaBit©" AnchorPane.bottomAnchor="-2.1316282072803006E-14" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Label id="dashboard_title" fx:id="dashboard_title" alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA;" text="Dashboard" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label id="dashboard_title" fx:id="dashboard_title" alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#1BB3EA, #6dd8ff); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;" text="Dashboard" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

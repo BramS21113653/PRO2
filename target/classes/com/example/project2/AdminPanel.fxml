@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project2.AdminPanel">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA;" text="Adminpanel">
+      <Label alignment="CENTER" contentDisplay="CENTER" minHeight="63.0" minWidth="600.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #1BB3EA; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#1BB3EA, #6dd8ff); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;" text="Adminpanel">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

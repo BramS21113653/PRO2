@@ -77,7 +77,6 @@ public class Gebruiker {
             String wachtwoord = result.getString("wachtwoord");
             Integer isAdmin = result.getInt("isadmin");
             Integer punten = result.getInt("punten");
-            System.out.println(punten);
             return new Gebruiker(id, naam, wachtwoord, isAdmin, punten, counter,false);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -132,7 +131,6 @@ public class Gebruiker {
         for (Gebruiker gebruiker : gebruikerslijst){
             if (gebruiker.getId().equals(id)) {
                 match = gebruiker;
-                System.out.println(match);
                 break;
             }
         }
