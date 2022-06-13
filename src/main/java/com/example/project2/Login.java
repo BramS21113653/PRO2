@@ -52,17 +52,28 @@ public class Login {
 
     private void checkLogin() throws IOException{
         HelloApplication h = new HelloApplication();
-        String uname = Username.getText();
-        String passw = password.getText();
-        for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
-            if (Username.getText().equals(gebruiker.getNaam()) && password.getText().equals(gebruiker.getWachtwoord())) {
-                Gebruiker.setIngelogdId(Gebruiker.getGebruikerOnId(gebruiker.getId()));
-                h.changeScene("Dashboard.fxml");
-            } else if (Username.getText().isEmpty() && password.getText().isEmpty()) {
-                wrongLogin.setText("Vul alle vakken in");
-            } else {
-                wrongLogin.setText("Wachtwoord of gebruikersnaam onjuist");
+        try{
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+            Statement stat = con.createStatement();
+            String sql = "select * from betabit.gebruiker";
+            ResultSet rs = stat.executeQuery(sql);
+            while (rs.next()) {
+                int id_col = rs.getInt("id");
+                String DB_username = rs.getString("naam");
+                String DB_password = rs.getString("wachtwoord");
+                int isadmin = rs.getInt("isadmin");
+                if (Username.getText().toString().equals(DB_username) && password.getText().toString().equals(DB_password)) {
+                    h.changeScene("Dashboard.fxml");
+                    Gebruiker.setIngelogdId(Gebruiker.getGebruikerOnId(id_col));
+                } else if (Username.getText().isEmpty() && password.getText().isEmpty()) {
+                    wrongLogin.setText("Please enter your data.");
+                } else {
+                    wrongLogin.setText("Wrong username or password!");
+                }
             }
+
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
         }
     }
 }
