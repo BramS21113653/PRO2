@@ -57,7 +57,6 @@ public class Login {
         for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
             if (Username.getText().equals(gebruiker.getNaam()) && password.getText().equals(gebruiker.getWachtwoord())) {
                 Gebruiker.setIngelogdId(Gebruiker.getGebruikerOnId(gebruiker.getId()));
-                System.out.println(Gebruiker.getGebruikersLijst());
                 h.changeScene("Dashboard.fxml");
             } else if (Username.getText().isEmpty() && password.getText().isEmpty()) {
                 wrongLogin.setText("Vul alle vakken in");
