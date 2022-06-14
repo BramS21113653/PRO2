@@ -12,7 +12,7 @@ public class Vervoersmiddel {
     public Vervoersmiddel (String vervoersmiddel, double multiplier) {
         this.vervoersmiddel = vervoersmiddel;
         this.multiplier = multiplier;
-        vervoersmiddelen.add(this);
+        getVervoersmiddelen().add(this);
     }
 
     public double getMultiplier() {
