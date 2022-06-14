@@ -12,7 +12,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static com.example.project2.Gebruiker.deleteGebruikerOnId;
 import static java.lang.Integer.parseInt;
 
 public class AdminPanel implements Initializable {
@@ -49,7 +48,7 @@ public class AdminPanel implements Initializable {
         try {
             String idString = verwijderen_combobox.getValue().replaceAll("[^0-9]", "");
             Integer id = parseInt(idString);
-            deleteGebruikerOnId(id);
+            Admin.deleteGebruikerOnId(id);
             Gebruiker.refreshGebruikerslijst();
             refreshbox();
         } catch(Exception e) {
@@ -63,7 +62,7 @@ public class AdminPanel implements Initializable {
             Integer isadmin = parseInt(admin_tekst.getText());
             String gebruikersnaam = gebruikersnaam_tekst.getText();
             String wachtwoord = wachtwoord_tekst.getText();
-            Gebruiker gebruiker = new Gebruiker(0, gebruikersnaam, wachtwoord, isadmin, 0, 0, true);
+            Gebruiker gebruiker = new Client(0, gebruikersnaam, wachtwoord, 0, 0, true);
         } catch(Exception e) {
             gebruikersnaam_tekst.setPromptText("Vul nieuwe gebruiker in");
             wachtwoord_tekst.setPromptText("Vul wachtwoord in");
@@ -98,7 +97,7 @@ public class AdminPanel implements Initializable {
         verwijderen_combobox.setValue("");
         verwijderen_combobox.getItems().clear();
         for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
-            if (gebruiker.getIsAdmin() == 1) {
+            if (gebruiker instanceof Admin) {
                 verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
             } else {
                 verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());

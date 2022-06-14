@@ -114,7 +114,7 @@ public class Dashboard<list> implements Initializable {
     @FXML
     void Admin_button(ActionEvent event) throws IOException {
         HelloApplication h = new HelloApplication();
-        if (Gebruiker.getIngelogdId().getIsAdmin() != 0) {
+        if (Gebruiker.getIngelogdId() instanceof  Admin) {
             h.changeScene("AdminPanel.fxml");
         }
     }
