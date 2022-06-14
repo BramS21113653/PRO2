@@ -153,23 +153,23 @@ public class Dashboard<list> implements Initializable {
         footprint3.setVisible(false);
         footprint4.setVisible(false);
         footprint5.setVisible(false);
-        if (Gebruiker.getIngelogdId().getPunten() <= 150) {
+        if (Gebruiker.getIngelogdId().getPunten() <= 50) {
             footprint1.setVisible(true);
             dashboard_title.setStyle("-fx-background-color: #0dbc00; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#0dbc00, #1ae20c); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
             dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#0dbc00, #1ae20c);");
-        } else if (Gebruiker.getIngelogdId().getPunten() <= 250) {
+        } else if (Gebruiker.getIngelogdId().getPunten() <= 100) {
             footprint2.setVisible(true);
             dashboard_title.setStyle("-fx-background-color: #9fbc00; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#9fbc00, #cef209); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
             dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#9fbc00, #cef209);");
-        } else if (Gebruiker.getIngelogdId().getPunten() <= 350) {
+        } else if (Gebruiker.getIngelogdId().getPunten() <= 150) {
             footprint3.setVisible(true);
             dashboard_title.setStyle("-fx-background-color: #bcb100; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#bcb100, #e8db0c); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
             dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#bcb100, #e8db0c);");
-        } else if (Gebruiker.getIngelogdId().getPunten() <= 450) {
+        } else if (Gebruiker.getIngelogdId().getPunten() <= 200) {
             footprint4.setVisible(true);
             dashboard_title.setStyle("-fx-background-color: #bc6a00; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#bc6a00, #f68d05); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
             dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#bc6a00, #f68d05);");
-        } else if (Gebruiker.getIngelogdId().getPunten() >= 450) {
+        } else if (Gebruiker.getIngelogdId().getPunten() >= 250) {
             footprint5.setVisible(true);
             dashboard_title.setStyle("-fx-background-color: #bc0000; -fx-background-radius: 0 0 20 20; -fx-border-color: linear-gradient(#bc0000, #f50c0c); -fx-border-width: 6; -fx-border-radius: 0 0 20 20; -fx-border-style: solid;");
             dashboard_verzilveren.setStyle("-fx-border-color: linear-gradient(#bc0000, #f50c0c);");
