@@ -4,6 +4,7 @@ package com.example.project2;
 
 import java.util.*;
 import java.sql.*;
+import com.example.project2.*;
 
 public abstract class Gebruiker {
     protected Integer id;
@@ -12,7 +13,6 @@ public abstract class Gebruiker {
     protected Integer punten;
     protected Integer plaats;
     protected static Gebruiker ingelogdId;
-    protected ArrayList<Rit> ritten = new ArrayList<Rit>();
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
 
     public Gebruiker(Integer id, String naam, String wachtwoord, Integer punten, Integer plaats, Boolean insert) throws SQLException {
@@ -45,15 +45,23 @@ public abstract class Gebruiker {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
+
         Integer counter = 0;
         try {
             while (result.next()) {
                 counter ++;
                 Gebruiker gebruiker = getGebruikerFromResult(result, counter);
             }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
         }
+
+
     }
     public static Gebruiker getGebruikerFromResult(ResultSet result, Integer counter){
         try {
@@ -94,15 +102,13 @@ public abstract class Gebruiker {
         statement.setInt(1, waarde);
         statement.setInt(2, ingelogdId.getId());
         statement.executeUpdate();
+        connection.close();
     }
 
     public Integer getPlaats() {return plaats;}
 
     public void setPlaats(Integer plaats) {this.plaats = plaats;}
 
-    public void addRit(Rit rit) {
-        this.ritten.add(rit);
-    }
 
     public static Gebruiker getIngelogdId() {
         return ingelogdId;
@@ -137,7 +143,6 @@ public abstract class Gebruiker {
                 ", wachtwoord='" + wachtwoord + '\'' +
                 ", punten=" + punten +
                 ", plaats=" + plaats +
-                ", ritten=" + ritten +
                 '}';
     }
 }
