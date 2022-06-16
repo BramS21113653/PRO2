@@ -68,10 +68,13 @@ public class Dashboard<list> implements Initializable {
 
     @FXML
     void dashboard_verzilveren(ActionEvent event) throws SQLException {
-        Gebruiker.getIngelogdId().setPunten(0);
-        Gebruiker.resetPunten();
-        refreshDash();
-        setcolor();
+        Gebruiker ingelogd = Gebruiker.getIngelogdId();
+        if (ingelogd instanceof Admin) {
+            ingelogd.setPunten(0);
+            Gebruiker.resetPunten();
+            refreshDash();
+            setcolor();
+        }
     }
 
     @FXML
