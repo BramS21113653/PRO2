@@ -1,66 +1,90 @@
 package com.example.project2;
 
+// template method pattern
+
 import java.util.*;
 import java.sql.*;
+import com.example.project2.*;
 
-public class Gebruiker {
-    private Integer id;
-    private String naam;
-    private String wachtwoord;
-    private Integer isAdmin;
-    private Integer punten;
-    private Integer plaats;
-    private static Integer ingelogdId;
-    private ArrayList<Rit> ritten = new ArrayList<Rit>();
+
+public abstract class Gebruiker {
+    protected static Connection connection;
+
+    static {
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected Integer id;
+    protected String naam;
+    protected String wachtwoord;
+    protected Integer punten;
+    protected Integer plaats;
+    protected static Gebruiker ingelogdId;
     public static ArrayList<Gebruiker> gebruikerslijst = new ArrayList<Gebruiker>();
 
-    public Gebruiker(Integer id, String naam, String wachtwoord, Integer isAdmin, Integer punten, Integer plaats, Boolean insert) throws SQLException {
+    public Gebruiker(Integer id, String naam, String wachtwoord, Integer punten, Integer plaats, Boolean insert) throws SQLException {
         this.id = id;
         this.naam = naam;
         this.wachtwoord = wachtwoord;
-        this.isAdmin = isAdmin;
         this.punten = punten;
         this.plaats = plaats;
         if (insert == true) {
             insertGebruiker();
-            refreshGebruikerslijst();
         } else {
-
             gebruikerslijst.add(this);
         }
     }
 
     public void insertGebruiker() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         Statement stat = connection.createStatement();
-        String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
+        String query = "insert into gebruiker(id, naam, wachtwoord, isadmin, punten"
                 + " values (?, ?, ?, ?, ?)";
         Random rand = new Random();
         Integer int_random = rand.nextInt(99999999);
-        PreparedStatement preparedStmt = connection.prepareStatement(query);
-        preparedStmt.setInt (1,int_random);
-        preparedStmt.setString (2, this.naam);
-        preparedStmt.setString   (3, this.wachtwoord);
-        preparedStmt.setInt(4, this.isAdmin);
-        preparedStmt.setInt(5, this.punten);
-        preparedStmt.execute();
-        connection.close();
+        PreparedStatement prepstat = connection.prepareStatement(query);
+        prepstat.setInt(1, int_random);
+        prepstat.setString(2,this.naam);
+        prepstat.setString(3, this.wachtwoord);
+        if (this instanceof Admin) {
+            prepstat.setInt(4, 1);
+        } else {
+            prepstat.setInt(4, 0);
+        }
+        prepstat.setInt(5, this.punten);
+    }
+
+    public static void resetPunten() throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ?");
+        statement.setInt(1, 0);
+        statement.executeUpdate();
+        refreshGebruikerslijst();
     }
 
     public static void refreshGebruikerslijst() throws SQLException {
         gebruikerslijst.clear();
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
-        Integer counter = 0;
         try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
+
+            Integer counter = 0;
+
             while (result.next()) {
                 counter ++;
                 Gebruiker gebruiker = getGebruikerFromResult(result, counter);
             }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } finally {
+            if (connection != null) {
+            }
         }
+
+
     }
     public static Gebruiker getGebruikerFromResult(ResultSet result, Integer counter){
         try {
@@ -69,13 +93,17 @@ public class Gebruiker {
             String wachtwoord = result.getString("wachtwoord");
             Integer isAdmin = result.getInt("isadmin");
             Integer punten = result.getInt("punten");
-            return new Gebruiker(id, naam, wachtwoord, isAdmin, punten, counter,false);
+            if (isAdmin == 1) {
+                return new Admin(id, naam, wachtwoord, punten, counter, false);
+            }
+            else {
+                return new Client(id, naam, wachtwoord, punten, counter,false);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
-
 
     public static ArrayList<Gebruiker> getGebruikersLijst() {return gebruikerslijst;}
 
@@ -83,35 +111,44 @@ public class Gebruiker {
 
     public Integer getId() {return id;}
 
-    public Integer getIsAdmin() {return isAdmin;}
-
     public Integer getPunten() {return punten;}
+
+    public void setPunten(Integer punten) {
+        this.punten = punten;
+    }
 
     public void addPunten(Integer punten) throws SQLException {
         Integer waarde;
         waarde = this.punten + punten;
         this.punten = waarde;
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
-        PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
-        statement.setInt(1, waarde);
-        statement.setInt(2, ingelogdId);
-        statement.executeUpdate();
+        try {
+            PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
+            statement.setInt(1, waarde);
+            statement.setInt(2, ingelogdId.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            assert connection != null;
+        }
+
     }
 
     public Integer getPlaats() {return plaats;}
 
     public void setPlaats(Integer plaats) {this.plaats = plaats;}
 
-    public void addRit(Rit rit) {
-        this.ritten.add(rit);
-    }
 
-    public static Integer getIngelogdId() {
+    public static Gebruiker getIngelogdId() {
         return ingelogdId;
     }
 
-    public static void setIngelogdId(Integer ingelogdId) {
+    public static void setIngelogdId(Gebruiker ingelogdId) {
         Gebruiker.ingelogdId = ingelogdId;
+    }
+
+    public String getWachtwoord() {
+        return wachtwoord;
     }
 
     public static Gebruiker getGebruikerOnId(Integer id) {
@@ -119,29 +156,22 @@ public class Gebruiker {
         for (Gebruiker gebruiker : gebruikerslijst){
             if (gebruiker.getId().equals(id)) {
                 match = gebruiker;
+                break;
             }
         }
         return match;
     }
-    public static void deleteGebruikerOnId(Integer id) throws SQLException {
-        if (id != null) {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
-            PreparedStatement statement = connection.prepareStatement(" DELETE FROM gebruiker WHERE id=?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        }
-    }
+
+    public abstract String getTitel();
 
     @Override
     public String toString() {
-        return "Gebruiker{" +
+        return getTitel() + "{"+
                 "id=" + id +
                 ", naam='" + naam + '\'' +
                 ", wachtwoord='" + wachtwoord + '\'' +
-                ", isAdmin=" + isAdmin +
                 ", punten=" + punten +
                 ", plaats=" + plaats +
-                ", ritten=" + ritten +
                 '}';
     }
 }
