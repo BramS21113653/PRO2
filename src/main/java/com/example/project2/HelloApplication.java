@@ -16,13 +16,13 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        Vervoersmiddel benzineAuto = new Vervoersmiddel("Benzine Auto", 1.0);
-        Vervoersmiddel dieselAuto = new Vervoersmiddel("Diesel Auto", 1.1);
-        Vervoersmiddel elektrischeAuto = new Vervoersmiddel("Elektrische Auto", 0.5);
-        Vervoersmiddel scooter = new Vervoersmiddel("Scooter", 0.8);
-        Vervoersmiddel motor = new Vervoersmiddel("Motor", 1.0);
-        Vervoersmiddel fiets = new Vervoersmiddel("Fiets", 0.1);
-        Vervoersmiddel ov = new Vervoersmiddel("Ov", 0.2);
+        Vervoersmiddel benzineAuto = new Vervoersmiddel("Benzine Auto", 1.05);
+        Vervoersmiddel dieselAuto = new Vervoersmiddel("Diesel Auto", 1.12);
+        Vervoersmiddel elektrischeAuto = new Vervoersmiddel("Elektrische Auto", 0.53);
+        Vervoersmiddel scooter = new Vervoersmiddel("Scooter", 0.84);
+        Vervoersmiddel motor = new Vervoersmiddel("Motor", 1.04);
+        Vervoersmiddel fiets = new Vervoersmiddel("Fiets", 0.13);
+        Vervoersmiddel ov = new Vervoersmiddel("Ov", 0.26);
         Vervoersmiddel lopen = new Vervoersmiddel("Lopen", 0);
         stg = stage;
         stage.setResizable(false);
