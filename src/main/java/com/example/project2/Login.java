@@ -30,7 +30,7 @@ public class Login {
     private Text wrongLogin;
 
     @FXML
-    void login_Button(ActionEvent event) throws IOException{
+    void login_Button(ActionEvent event) throws IOException, SQLException {
         checkLogin();
     }
 
@@ -47,33 +47,27 @@ public class Login {
     @FXML
     void wachtwoordReset_button(ActionEvent event) throws IOException{
         HelloApplication h = new HelloApplication();
-        h.changeScene("Dashboard.fxml");
+        h.changeScene("Wachtwoord.fxml");
     }
 
-    private void checkLogin() throws IOException{
+    private void checkLogin() throws IOException, SQLException {
         HelloApplication h = new HelloApplication();
-        try{
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
-            Statement stat = con.createStatement();
-            String sql = "select * from betabit.gebruiker";
-            ResultSet rs = stat.executeQuery(sql);
-            while (rs.next()) {
-                int id_col = rs.getInt("id");
-                String DB_username = rs.getString("naam");
-                String DB_password = rs.getString("wachtwoord");
-                int isadmin = rs.getInt("isadmin");
-                if (Username.getText().toString().equals(DB_username) && password.getText().toString().equals(DB_password)) {
-                    h.changeScene("Dashboard.fxml");
-                    Gebruiker.setIngelogdId(id_col);
-                } else if (Username.getText().isEmpty() && password.getText().isEmpty()) {
-                    wrongLogin.setText("Please enter your data.");
-                } else {
-                    wrongLogin.setText("Wrong username or password!");
-                }
+        Gebruiker ingelogd = null;
+        String uname = Username.getText();
+        String passw = password.getText();
+        Gebruiker.refreshGebruikerslijst();
+        for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
+            if (Username.getText().equals(gebruiker.getNaam()) && password.getText().equals(gebruiker.getWachtwoord())) {
+                ingelogd = gebruiker;
+            } else if (Username.getText().isEmpty() && password.getText().isEmpty()) {
+                wrongLogin.setText("Vul alle vakken in");
+            } else {
+                wrongLogin.setText("Wachtwoord of gebruikersnaam onjuist");
             }
-
-        } catch (Exception error) {
-            System.out.println(error.getMessage());
+        }
+        Gebruiker.setIngelogdId(ingelogd);
+        if (ingelogd != null) {
+            h.changeScene("Dashboard.fxml");
         }
     }
 }
