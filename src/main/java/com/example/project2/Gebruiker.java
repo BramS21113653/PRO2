@@ -12,7 +12,7 @@ public abstract class Gebruiker {
 
     static {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         } catch (SQLException e) {
             e.printStackTrace();
         }
