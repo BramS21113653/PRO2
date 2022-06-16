@@ -6,7 +6,18 @@ import java.util.*;
 import java.sql.*;
 import com.example.project2.*;
 
+
 public abstract class Gebruiker {
+    protected static Connection connection;
+
+    static {
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected Integer id;
     protected String naam;
     protected String wachtwoord;
@@ -23,17 +34,30 @@ public abstract class Gebruiker {
         this.plaats = plaats;
         if (insert == true) {
             insertGebruiker();
-            refreshGebruikerslijst();
         } else {
-
             gebruikerslijst.add(this);
         }
     }
 
-    public abstract void insertGebruiker() throws SQLException;
+    public void insertGebruiker() throws SQLException {
+        Statement stat = connection.createStatement();
+        String query = "insert into gebruiker(id, naam, wachtwoord, isadmin, punten"
+                + " values (?, ?, ?, ?, ?)";
+        Random rand = new Random();
+        Integer int_random = rand.nextInt(99999999);
+        PreparedStatement prepstat = connection.prepareStatement(query);
+        prepstat.setInt(1, int_random);
+        prepstat.setString(2,this.naam);
+        prepstat.setString(3, this.wachtwoord);
+        if (this instanceof Admin) {
+            prepstat.setInt(4, 1);
+        } else {
+            prepstat.setInt(4, 0);
+        }
+        prepstat.setInt(5, this.punten);
+    }
 
     public static void resetPunten() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ?");
         statement.setInt(1, 0);
         statement.executeUpdate();
@@ -42,12 +66,12 @@ public abstract class Gebruiker {
 
     public static void refreshGebruikerslijst() throws SQLException {
         gebruikerslijst.clear();
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
-
-        Integer counter = 0;
         try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
+
+            Integer counter = 0;
+
             while (result.next()) {
                 counter ++;
                 Gebruiker gebruiker = getGebruikerFromResult(result, counter);
@@ -57,7 +81,6 @@ public abstract class Gebruiker {
             System.out.println(e.getMessage());
         } finally {
             if (connection != null) {
-                connection.close();
             }
         }
 
@@ -70,8 +93,9 @@ public abstract class Gebruiker {
             String wachtwoord = result.getString("wachtwoord");
             Integer isAdmin = result.getInt("isadmin");
             Integer punten = result.getInt("punten");
-            if (isAdmin == 1)
-            return new Admin(id, naam, wachtwoord, punten, counter,true);
+            if (isAdmin == 1) {
+                return new Admin(id, naam, wachtwoord, punten, counter, false);
+            }
             else {
                 return new Client(id, naam, wachtwoord, punten, counter,false);
             }
@@ -97,12 +121,18 @@ public abstract class Gebruiker {
         Integer waarde;
         waarde = this.punten + punten;
         this.punten = waarde;
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
-        PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
-        statement.setInt(1, waarde);
-        statement.setInt(2, ingelogdId.getId());
-        statement.executeUpdate();
-        connection.close();
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+            PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
+            statement.setInt(1, waarde);
+            statement.setInt(2, ingelogdId.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            assert connection != null;
+        }
+
     }
 
     public Integer getPlaats() {return plaats;}

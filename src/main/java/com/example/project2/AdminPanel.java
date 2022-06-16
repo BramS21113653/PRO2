@@ -62,7 +62,12 @@ public class AdminPanel implements Initializable {
             Integer isadmin = parseInt(admin_tekst.getText());
             String gebruikersnaam = gebruikersnaam_tekst.getText();
             String wachtwoord = wachtwoord_tekst.getText();
-            Gebruiker gebruiker = new Client(0, gebruikersnaam, wachtwoord, 0, 0, true);
+            if (isadmin != 1) {
+                Gebruiker gebruiker = new Client(0, gebruikersnaam, wachtwoord, 0, 0, true);
+            } else {
+                Gebruiker gebruiker = new Admin(0, gebruikersnaam, wachtwoord, 0, 0, true);
+            }
+
         } catch(Exception e) {
             gebruikersnaam_tekst.setPromptText("Vul nieuwe gebruiker in");
             wachtwoord_tekst.setPromptText("Vul wachtwoord in");
@@ -78,7 +83,7 @@ public class AdminPanel implements Initializable {
 
     @FXML
     void verwijderen_combobox(ActionEvent event) {
- 
+
     }
 
     @FXML

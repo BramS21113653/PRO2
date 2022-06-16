@@ -24,7 +24,6 @@ public class HelloApplication extends Application {
         Vervoersmiddel fiets = new Vervoersmiddel("Fiets", 0.1);
         Vervoersmiddel ov = new Vervoersmiddel("Ov", 0.2);
         Vervoersmiddel lopen = new Vervoersmiddel("Lopen", 0);
-        Gebruiker.refreshGebruikerslijst();
         stg = stage;
         stage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
