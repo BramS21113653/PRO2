@@ -122,7 +122,6 @@ public abstract class Gebruiker {
         waarde = this.punten + punten;
         this.punten = waarde;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
             PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ? WHERE id=?");
             statement.setInt(1, waarde);
             statement.setInt(2, ingelogdId.getId());
