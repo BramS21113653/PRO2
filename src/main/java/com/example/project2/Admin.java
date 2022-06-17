@@ -13,7 +13,8 @@ public class Admin extends Gebruiker {
     }
 
     public void insertGebruiker() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        Connection connection = Database.getConnection();
+
         Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
                 + " values (?, ?, ?, ?, ?)";
@@ -31,7 +32,7 @@ public class Admin extends Gebruiker {
 
     public static void deleteGebruikerOnId(Integer id) throws SQLException {
         if (id != null) {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+            Connection connection = Database.getConnection();
             PreparedStatement statement = connection.prepareStatement(" DELETE FROM gebruiker WHERE id=?");
             statement.setInt(1, id);
             statement.executeUpdate();
