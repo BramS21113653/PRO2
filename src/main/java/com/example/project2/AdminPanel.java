@@ -62,7 +62,7 @@ public class AdminPanel implements Initializable {
             Integer isadmin = parseInt(admin_tekst.getText());
             String gebruikersnaam = gebruikersnaam_tekst.getText();
             String wachtwoord = wachtwoord_tekst.getText();
-            if (isadmin != 1) {
+            if (isadmin == 0) {
                 Gebruiker gebruiker = new Client(0, gebruikersnaam, wachtwoord, 0, 0, true);
             } else {
                 Gebruiker gebruiker = new Admin(0, gebruikersnaam, wachtwoord, 0, 0, true);

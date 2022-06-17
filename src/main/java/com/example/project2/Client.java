@@ -1,16 +1,19 @@
 package com.example.project2;
 
+import java.util.*;
 import java.sql.*;
-import java.util.Random;
 
 public class Client extends Gebruiker {
+
     public Client(Integer id, String naam, String wachtwoord, Integer punten, Integer plaats, Boolean insert) throws SQLException {
         super(id, naam, wachtwoord, punten, plaats, insert);
+        if (insert) {
+            this.insertGebruiker();
+        }
     }
 
-    @Override
     public void insertGebruiker() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
         Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
                 + " values (?, ?, ?, ?, ?)";
@@ -20,7 +23,7 @@ public class Client extends Gebruiker {
         preparedStmt.setInt (1,int_random);
         preparedStmt.setString (2, this.naam);
         preparedStmt.setString   (3, this.wachtwoord);
-        preparedStmt.setBoolean(4, false);
+        preparedStmt.setInt (4, 0);
         preparedStmt.setInt(4, this.punten);
         preparedStmt.execute();
         connection.close();
