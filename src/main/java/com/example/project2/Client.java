@@ -13,7 +13,7 @@ public class Client extends Gebruiker {
     }
 
     public void insertGebruiker() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
                 + " values (?, ?, ?, ?, ?)";
@@ -24,7 +24,7 @@ public class Client extends Gebruiker {
         preparedStmt.setString (2, this.naam);
         preparedStmt.setString   (3, this.wachtwoord);
         preparedStmt.setInt (4, 0);
-        preparedStmt.setInt(4, this.punten);
+        preparedStmt.setInt(5, this.punten);
         preparedStmt.execute();
         connection.close();
     }
@@ -32,6 +32,6 @@ public class Client extends Gebruiker {
 
     @Override
     public String getTitel() {
-        return "Admin " + naam;
+        return "Client " + naam;
     }
 }

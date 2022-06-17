@@ -13,7 +13,7 @@ public class Admin extends Gebruiker {
     }
 
     public void insertGebruiker() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
                 + " values (?, ?, ?, ?, ?)";
