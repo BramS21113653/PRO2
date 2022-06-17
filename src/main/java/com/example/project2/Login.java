@@ -23,8 +23,6 @@ public class Login {
     @FXML
     private PasswordField password;
 
-    @FXML
-    private Button wachtwoordReset;
 
     @FXML
     private Text wrongLogin;
@@ -43,12 +41,7 @@ public class Login {
     void username_Input(ActionEvent event) {
 
     }
-
-    @FXML
-    void wachtwoordReset_button(ActionEvent event) throws IOException{
-        HelloApplication h = new HelloApplication();
-        h.changeScene("Wachtwoord.fxml");
-    }
+    
 
     private void checkLogin() throws IOException, SQLException {
         HelloApplication h = new HelloApplication();
