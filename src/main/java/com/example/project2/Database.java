@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Database {
     public static Connection makeConnection() {
             try {
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "Kampioen11");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
                 return connection;
             } catch (SQLException e) {
                 e.printStackTrace();
