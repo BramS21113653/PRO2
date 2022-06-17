@@ -8,16 +8,7 @@ import com.example.project2.*;
 
 
 public abstract class Gebruiker {
-    protected static Connection connection;
-
-    static {
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
+    protected static Connection connection = Database.getConnection();
     protected Integer id;
     protected String naam;
     protected String wachtwoord;
