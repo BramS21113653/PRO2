@@ -12,7 +12,7 @@ public abstract class Gebruiker {
 
     static {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,28 +33,10 @@ public abstract class Gebruiker {
         this.punten = punten;
         this.plaats = plaats;
         if (insert == true) {
-            insertGebruiker();
+
         } else {
             gebruikerslijst.add(this);
         }
-    }
-
-    public void insertGebruiker() throws SQLException {
-        Statement stat = connection.createStatement();
-        String query = "insert into gebruiker(id, naam, wachtwoord, isadmin, punten"
-                + " values (?, ?, ?, ?, ?)";
-        Random rand = new Random();
-        Integer int_random = rand.nextInt(99999999);
-        PreparedStatement prepstat = connection.prepareStatement(query);
-        prepstat.setInt(1, int_random);
-        prepstat.setString(2,this.naam);
-        prepstat.setString(3, this.wachtwoord);
-        if (this instanceof Admin) {
-            prepstat.setInt(4, 1);
-        } else {
-            prepstat.setInt(4, 0);
-        }
-        prepstat.setInt(5, this.punten);
     }
 
     public static void resetPunten() throws SQLException {
