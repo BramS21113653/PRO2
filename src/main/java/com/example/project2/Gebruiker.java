@@ -26,6 +26,22 @@ public abstract class Gebruiker {
         //gebruikerslijst.add(this);
     }
 
+    public void insertGebruiker() throws SQLException {
+        Statement stat = connection.createStatement();
+        String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
+                + " values (?, ?, ?, ?, ?)";
+        Random rand = new Random();
+        Integer int_random = rand.nextInt(99999999);
+        PreparedStatement preparedStmt = connection.prepareStatement(query);
+        preparedStmt.setInt (1,int_random);
+        preparedStmt.setString (2, this.naam);
+        preparedStmt.setString   (3, this.wachtwoord);
+        preparedStmt.setInt (4, 0);
+        preparedStmt.setInt(5, this.punten);
+        preparedStmt.execute();
+        connection.close();
+    }
+
     public static void templateMethod() throws SQLException {
         gebruikerslijst.clear();
         refreshGebruikerslijst();
