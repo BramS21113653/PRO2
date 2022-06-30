@@ -2,6 +2,8 @@ module com.example.project2 {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires org.testng;
+    requires junit;
     //requires junit;
 
 
