@@ -14,7 +14,7 @@ public class Client extends Gebruiker {
 
     public void insertGebruiker() throws SQLException {
         Connection connection = Database.getConnection();
-        Statement stat = connection.createStatement();
+            Statement stat = connection.createStatement();
         String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
                 + " values (?, ?, ?, ?, ?)";
         Random rand = new Random();
