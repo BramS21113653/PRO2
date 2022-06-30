@@ -102,11 +102,12 @@ public class AdminPanel implements Initializable {
         verwijderen_combobox.setValue("");
         verwijderen_combobox.getItems().clear();
         for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
-            if (gebruiker instanceof Admin) {
-                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
-            } else {
-                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
-            }
+            verwijderen_combobox.getItems().add(gebruiker.toString());
+//            if (gebruiker instanceof Admin) {
+//                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId() + " | ADMIN");
+//            } else {
+//                verwijderen_combobox.getItems().add(gebruiker.getNaam() + " | " + gebruiker.getId());
+//            }
         }
     }
     @Override
