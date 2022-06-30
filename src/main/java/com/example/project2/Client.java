@@ -3,7 +3,7 @@ package com.example.project2;
 import java.util.*;
 import java.sql.*;
 
-public class Client extends Gebruiker {
+public class Client extends Gebruiker implements IToevoegen {
 
     public Client(Integer id, String naam, String wachtwoord, Integer punten, Integer plaats, Boolean insert) throws SQLException {
         super(id, naam, wachtwoord, punten, plaats, insert);

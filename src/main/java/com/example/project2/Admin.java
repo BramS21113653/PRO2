@@ -3,7 +3,7 @@ package com.example.project2;
 import java.util.*;
 import java.sql.*;
 
-public class Admin extends Gebruiker {
+public class Admin extends Gebruiker implements IWijzigen {
 
     public Admin(Integer id, String naam, String wachtwoord, Integer punten, Integer plaats, Boolean insert) throws SQLException {
         super(id, naam, wachtwoord, punten, plaats, insert);
@@ -26,7 +26,6 @@ public class Admin extends Gebruiker {
         preparedStmt.execute();
         connection.close();
     }
-
     public static void deleteGebruikerOnId(Integer id) throws SQLException {
         if (id != null) {
             Connection connection = Database.getConnection();
@@ -36,7 +35,6 @@ public class Admin extends Gebruiker {
             System.out.println("Gebruiker:" + Gebruiker.getGebruikerOnId(id).toString() + "is verwijderd uit het systeem.");
         }
     }
-
     @Override
     public String getTitel() {
         return "Admin " + naam;
