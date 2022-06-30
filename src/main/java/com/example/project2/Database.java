@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 public class Database {
     public static Connection makeConnection() {
-            try {
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
-                return connection;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/betabit", "root", "");
+            return connection;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
