@@ -23,28 +23,7 @@ public abstract class Gebruiker {
         this.wachtwoord = wachtwoord;
         this.punten = punten;
         this.plaats = plaats;
-        //gebruikerslijst.add(this);
-    }
-
-    public void insertGebruiker() throws SQLException {
-        Statement stat = connection.createStatement();
-        String query = " insert into gebruiker (id, naam, wachtwoord, isadmin, punten)"
-                + " values (?, ?, ?, ?, ?)";
-        Random rand = new Random();
-        Integer int_random = rand.nextInt(99999999);
-        PreparedStatement preparedStmt = connection.prepareStatement(query);
-        preparedStmt.setInt (1,int_random);
-        preparedStmt.setString (2, this.naam);
-        preparedStmt.setString   (3, this.wachtwoord);
-        preparedStmt.setInt (4, 0);
-        preparedStmt.setInt(5, this.punten);
-        preparedStmt.execute();
-        connection.close();
-    }
-
-    public static void templateMethod() throws SQLException {
-        gebruikerslijst.clear();
-        refreshGebruikerslijst();
+        gebruikerslijst.add(this);
     }
 
     public static void resetPunten() throws SQLException {
@@ -54,7 +33,12 @@ public abstract class Gebruiker {
         templateMethod();
     }
 
+    public static void templateMethod() throws SQLException {
+        refreshGebruikerslijst();
+    }
+
     public static void refreshGebruikerslijst() throws SQLException {
+        gebruikerslijst.clear();
         try {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
@@ -72,8 +56,9 @@ public abstract class Gebruiker {
             if (connection != null) {
             }
         }
-    }
 
+
+    }
     public static Gebruiker getGebruikerFromResult(ResultSet result, Integer counter){
         try {
             Integer id = result.getInt("id");
