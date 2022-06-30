@@ -139,7 +139,7 @@ public class Dashboard<list> implements Initializable {
     }
 
     private void refreshDash() throws SQLException {
-        Gebruiker.refreshGebruikerslijst();
+        Gebruiker.templateMethod();
 
         ObservableList<Gebruiker> list = FXCollections.observableArrayList(Gebruiker.getGebruikersLijst());
         keuze_Menu.getItems().setAll("Lopen", "Ov", "Fiets", "Motor", "Scooter", "Elektrische Auto", "Diesel Auto", "Benzine Auto");

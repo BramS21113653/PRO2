@@ -7,9 +7,6 @@ public class Admin extends Gebruiker {
 
     public Admin(Integer id, String naam, String wachtwoord, Integer punten, Integer plaats, Boolean insert) throws SQLException {
         super(id, naam, wachtwoord, punten, plaats, insert);
-        if (insert) {
-            this.insertGebruiker();
-        }
     }
 
     public void insertGebruiker() throws SQLException {

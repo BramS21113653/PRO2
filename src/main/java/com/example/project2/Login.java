@@ -48,7 +48,7 @@ public class Login {
         Gebruiker ingelogd = null;
         String uname = Username.getText();
         String passw = password.getText();
-        Gebruiker.refreshGebruikerslijst();
+        Gebruiker.templateMethod();
         for (Gebruiker gebruiker : Gebruiker.getGebruikersLijst()) {
             if (Username.getText().equals(gebruiker.getNaam()) && password.getText().equals(gebruiker.getWachtwoord())) {
                 ingelogd = gebruiker;

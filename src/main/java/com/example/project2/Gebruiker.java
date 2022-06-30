@@ -23,22 +23,22 @@ public abstract class Gebruiker {
         this.wachtwoord = wachtwoord;
         this.punten = punten;
         this.plaats = plaats;
-        if (insert == true) {
+        gebruikerslijst.add(this);
+    }
 
-        } else {
-            gebruikerslijst.add(this);
-        }
+    public static void templateMethod() throws SQLException {
+        gebruikerslijst.clear();
+        refreshGebruikerslijst();
     }
 
     public static void resetPunten() throws SQLException {
         PreparedStatement statement = connection.prepareStatement(" UPDATE gebruiker SET punten = ?");
         statement.setInt(1, 0);
         statement.executeUpdate();
-        refreshGebruikerslijst();
+        templateMethod();
     }
 
     public static void refreshGebruikerslijst() throws SQLException {
-        gebruikerslijst.clear();
         try {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery("SELECT * FROM `gebruiker` ORDER BY `punten`");
@@ -56,9 +56,8 @@ public abstract class Gebruiker {
             if (connection != null) {
             }
         }
-
-
     }
+
     public static Gebruiker getGebruikerFromResult(ResultSet result, Integer counter){
         try {
             Integer id = result.getInt("id");
@@ -141,7 +140,6 @@ public abstract class Gebruiker {
     public String toString() {
         return getTitel() + "{"+
                 "id=" + id +
-                ", naam='" + naam + '\'' +
                 ", wachtwoord='" + wachtwoord + '\'' +
                 ", punten=" + punten +
                 ", plaats=" + plaats +

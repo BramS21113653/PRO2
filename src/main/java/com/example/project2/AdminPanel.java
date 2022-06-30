@@ -49,7 +49,7 @@ public class AdminPanel implements Initializable {
             String idString = verwijderen_combobox.getValue().replaceAll("[^0-9]", "");
             Integer id = parseInt(idString);
             Admin.deleteGebruikerOnId(id);
-            Gebruiker.refreshGebruikerslijst();
+            Gebruiker.templateMethod();
             refreshbox();
         } catch(Exception e) {
 
@@ -78,7 +78,7 @@ public class AdminPanel implements Initializable {
         wachtwoord_tekst.setText("");
         gebruikersnaam_tekst.setText("");
         refreshbox();
-        Gebruiker.refreshGebruikerslijst();
+        Gebruiker.templateMethod();
     }
 
     @FXML
