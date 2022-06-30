@@ -23,7 +23,7 @@ public abstract class Gebruiker {
         this.wachtwoord = wachtwoord;
         this.punten = punten;
         this.plaats = plaats;
-        gebruikerslijst.add(this);
+        //gebruikerslijst.add(this);
     }
 
     public static void templateMethod() throws SQLException {

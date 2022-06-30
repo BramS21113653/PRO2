@@ -33,6 +33,7 @@ public class Admin extends Gebruiker {
             PreparedStatement statement = connection.prepareStatement(" DELETE FROM gebruiker WHERE id=?");
             statement.setInt(1, id);
             statement.executeUpdate();
+            System.out.println("Gebruiker:" + Gebruiker.getGebruikerOnId(id).toString() + "is verwijderd uit het systeem.");
         }
     }
 
