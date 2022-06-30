@@ -1,6 +1,6 @@
 //package com.example.project2;
 //
-//import org.junit.Test;
+//import org.testng.annotations.Test;
 //
 //import java.sql.*;
 //
